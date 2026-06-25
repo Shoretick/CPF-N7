@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.large-text {
+  font-size: 118.75%;
+}
+
+html.high-contrast {
+  filter: contrast(1.35) saturate(1.1);
+}
+
+html.high-contrast body {
+  background-color: #ffffff;
+}
+
+html.high-contrast.large-text {
+  font-size: 118.75%;
+}

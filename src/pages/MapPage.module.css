@@ -1,0 +1,497 @@
+.page {
+  min-height: 100%;
+  background-color: #f9f9f9;
+}
+
+/* ─── Mobile ─── */
+
+.mobileLayout {
+  display: block;
+}
+
+.mobileMain {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.mobileTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1a242b;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.selectWrapper {
+  margin-bottom: 1.5rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #f9f9f9;
+  background-color: #004f69;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23f9f9f9'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.select:focus-visible {
+  outline: 2px solid #77bde9;
+  outline-offset: 2px;
+}
+
+.select option {
+  color: #1a242b;
+  background-color: #f9f9f9;
+}
+
+.mobileSubtitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a242b;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.spaceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.spaceColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spaceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 110px;
+  padding: 1rem 0.75rem;
+  background-color: #004f69;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.1s ease;
+}
+
+.spaceCard:hover {
+  border-color: rgba(249, 249, 249, 0.35);
+}
+
+.spaceCardSelected {
+  border-color: #77bde9;
+  box-shadow: 0 0 0 2px rgba(119, 189, 233, 0.4);
+}
+
+.spaceCard:focus-visible {
+  outline: 2px solid #77bde9;
+  outline-offset: 2px;
+}
+
+.spaceIcon {
+  width: 32px;
+  height: 32px;
+  color: rgba(249, 249, 249, 0.75);
+  margin-bottom: auto;
+  padding-top: 0.5rem;
+}
+
+.spaceLabel {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #f9f9f9;
+  text-align: center;
+}
+
+.planButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1a242b;
+  background-color: #77bde9;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.planButton:hover {
+  opacity: 0.92;
+}
+
+.planButton:focus-visible {
+  outline: 2px solid #004f69;
+  outline-offset: 2px;
+}
+
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  color: #1a242b;
+  flex-shrink: 0;
+}
+
+.mobileFab {
+  display: block;
+}
+
+/* ─── Desktop ─── */
+
+.desktopLayout {
+  display: none;
+}
+
+.desktopContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.desktopLeft {
+  min-width: 0;
+}
+
+.desktopTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a242b;
+  text-align: left;
+  margin-bottom: 1.75rem;
+  line-height: 1.3;
+}
+
+.desktopSectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1a242b;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Sector cards — editar colores por card */
+.sectorGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectorCard {
+  --sector-bg: #e3d8ba;
+  --sector-accent: #dea952;
+  --sector-text: #1a242b;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 3 / 5;
+  min-height: 220px;
+  padding: 1rem;
+  background-color: var(--sector-bg);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sectorCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 36, 43, 0.12);
+}
+
+.sectorCard:focus-visible {
+  outline: 2px solid #004f69;
+  outline-offset: 2px;
+}
+
+.sectorCardS1 {
+  --sector-bg: #e3d8ba;
+  --sector-accent: #dea952;
+
+}
+
+.sectorCardS2 {
+  --sector-bg: #ABB5D4;
+  --sector-accent: #3B62D9;
+}
+
+.sectorCardS3 {
+  --sector-bg: #ABD1B3;
+  --sector-accent: #30D94F;
+}
+
+.sectorCardS4 {
+  --sector-bg: #BAABD4;
+  --sector-accent: #6F35D4;
+}
+
+.sectorCode {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--sector-accent);
+  line-height: 1;
+}
+
+.sectorIconWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectorIcon {
+  width: 48px;
+  height: 48px;
+  color: var(--sector-text);
+}
+
+.sectorFooter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 92px;
+}
+
+.sectorTextGroup {
+  
+  min-width: 0;
+  display:flex;
+  flex-direction:column;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.sectorName {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--sector-text);
+  margin-bottom: 1rem;
+  min-height: 0.5rem;
+}
+
+.sectorDescription {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--sector-text);
+  min-height: calc(0.75rem * 1.4 * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  
+}
+
+.sectorArrow {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--sector-accent);
+  color: #f9f9f9;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Utility cards — editar colores por card */
+.utilityGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+.utilityCard {
+  --utility-bg: #f9f9f9;
+  --utility-border: #d4d4d4;
+  --utility-text: #1a242b;
+  --utility-arrow-bg: #a3a3a3;
+  --utility-arrow-color: #1a242b;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 0.875rem;
+  background-color: var(--utility-bg);
+  border: 1px solid var(--utility-border);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.utilityCard:hover {
+  border-color: #a3a3a3;
+  box-shadow: 0 4px 12px rgba(26, 36, 43, 0.08);
+}
+
+.utilityCard:focus-visible {
+  outline: 2px solid #004f69;
+  outline-offset: 2px;
+}
+
+.utilityCard1,
+.utilityCard2,
+.utilityCard3,
+.utilityCard4,
+.utilityCard5 {
+  --utility-bg: #f9f9f9;
+  --utility-border: #d4d4d4;
+  --utility-text: #1a242b;
+  --utility-arrow-bg: #a3a3a3;
+  --utility-arrow-color: #1a242b;
+}
+
+.utilityTop {
+  position: relative;
+  min-height: 2.75rem;
+  margin-bottom: 0.25rem;
+  align-items: center;
+  justify-items: center;
+  padding-right:4%;
+}
+
+.utilityIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  color: var(--utility-text);
+  padding-right: 1%;
+}
+
+.utilityTitle {
+  font-size: 0.80rem;
+  font-weight: 700;
+  color: var(--utility-text);
+  text-align:end;
+  width: 70%;
+  padding-top: 0.125rem;
+  
+  
+}
+
+.utilityFooter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.375rem;
+}
+
+.utilityDescription {
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--utility-text);
+  flex: 1;
+  
+}
+
+.utilityArrow {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--utility-arrow-bg);
+  color: var(--utility-arrow-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Plano general — columna derecha 1/3 */
+.desktopRight {
+  min-width: 0;
+}
+
+.floorPlanCard {
+  background-color: #f9f9f9;
+  border: 1px solid #d4d4d4;
+  border-radius: 12px;
+  padding: 1.25rem;
+  height: 100%;
+  min-height: 480px;
+}
+
+.floorPlanTitle {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1a242b;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.floorPlanImageSlot {
+  width: 100%;
+  flex: 1;
+  min-height: 400px;
+  border: 2px dashed #d4d4d4;
+  border-radius: 8px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floorPlanPlaceholder {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+  font-weight: 500;
+}
+
+/* ─── Responsive switch ─── */
+
+@media (min-width: 769px) {
+  .mobileLayout {
+    display: none;
+  }
+
+  .mobileFab {
+    display: none;
+  }
+
+  .desktopLayout {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopLayout {
+    display: none;
+  }
+}

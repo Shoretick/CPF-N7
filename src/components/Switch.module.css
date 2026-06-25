@@ -1,0 +1,36 @@
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background-color: rgba(26, 36, 43, 0.25);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  padding: 0;
+}
+
+.switch.on {
+  background-color: #004f69;
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.switch.on .thumb {
+  transform: translateX(20px);
+}
+
+.switch:focus-visible {
+  outline: 2px solid #004f69;
+  outline-offset: 2px;
+}
