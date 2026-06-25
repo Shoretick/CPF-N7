@@ -61,7 +61,7 @@ export default function AccessibilityButton({ variant = 'floating' }: Accessibil
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (variant !== 'floating' || !dragging.current) return
 
-    hasMoved.current = true
+    hasMoved.current = false
     const next = clampPosition(
       event.clientX - pointerOffset.current.x,
       event.clientY - pointerOffset.current.y,
@@ -77,14 +77,17 @@ export default function AccessibilityButton({ variant = 'floating' }: Accessibil
     dragging.current = false
     event.currentTarget.releasePointerCapture(event.pointerId)
 
-    if (!hasMoved.current) {
+    if (hasMoved.current) {
+      
       openPanel()
+
     }
   }
 
   const handleClick = () => {
-    if (variant === 'navbar') {
-      openPanel()
+    if (variant === 'navbar'||'floating' ) {
+    
+      openPanel();
     }
   }
 
