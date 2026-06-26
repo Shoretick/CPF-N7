@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import AccessibilityPanel from './AccessibilityPanel'
 import styles from './AccessibilityButton.module.css'
+import botonIcon from "../../recursos/botonIcon.png"
 
 const BUTTON_SIZE = 56
 const NAVBAR_OFFSET = 72
@@ -118,11 +119,7 @@ export default function AccessibilityButton({ variant = 'floating' }: Accessibil
 
 function AccessibilityIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={styles.icon}>
-      <path
-        fill="currentColor"
-        d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 0 2h-1.07A7.001 7.001 0 0 1 13 20.9V22a1 1 0 0 1-2 0v-1.1A7.001 7.001 0 0 1 5.07 16H4a1 1 0 0 1 0-2h1a7 7 0 0 1 7-7h1V5.73A2 2 0 0 1 12 2zm-5 14a5 5 0 1 0 10 0H7z"
-      />
-    </svg>
+<img src={botonIcon} height="95%" width="100%" />
+    
   )
 }
