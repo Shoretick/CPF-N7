@@ -6,7 +6,7 @@ import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './MapPage.module.css'
 
 import mapaDelEdificio from "../../recursos/mapaHD.png"
-import mapaSector4 from "../../recursos/mapaHDS4.png"
+
 
 const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
 
