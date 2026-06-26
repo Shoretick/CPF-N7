@@ -1,10 +1,15 @@
+
 import { useState } from 'react'
 import { useVoiceAnnouncement } from '../context/AccessibilityContext'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './MapPage.module.css'
 
+import mapaDelEdificio from "../../recursos/mapaHD.png"
+import mapaSector4 from "../../recursos/mapaHDS4.png"
+
 const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
+
 
 const SPACE_CARDS = [
   [
@@ -101,7 +106,7 @@ export default function MapPage() {
     setSelectedSpace(label)
     announce(`Espacio seleccionado: ${label}`)
   }
-
+ 
   return (
     <div className={styles.page}>
       <InteractiveMapNavbar />
@@ -236,7 +241,17 @@ export default function MapPage() {
             <div className={styles.floorPlanCard}>
               <h2 className={styles.floorPlanTitle}>PLANO GENERAL DEL ESTABLECIMIENTO</h2>
               <div className={styles.floorPlanImageSlot} aria-label="Plano del edificio">
-                <span className={styles.floorPlanPlaceholder}>Mapa del edificio</span>
+              
+                {mapaDelEdificio ? (
+        <img
+          src={mapaDelEdificio}
+          alt="Mapa del edificio"
+          width={"100%"} // Ajusta el ancho según tus necesidades
+          height={"100%"} // Ajusta el alto según tus necesidades
+        />
+      ) : (
+        <span className={styles.floorPlanPlaceholder}>Mapa del edificio</span>
+      )}
               </div>
             </div>
           </aside>

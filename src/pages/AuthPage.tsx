@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import styles from './AuthPage.module.css'
 
-const ADMIN_USER = 'admin'
-const ADMIN_PASSWORD = '1234'
+const ADMIN_USER = ''
+const ADMIN_PASSWORD = ''
 
 export default function AuthPage() {
   const navigate = useNavigate()
