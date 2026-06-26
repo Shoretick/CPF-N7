@@ -6,6 +6,12 @@ import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './MapPage.module.css'
 
 import mapaDelEdificio from "../../recursos/mapaHD.png"
+import ico1S4 from "../../recursos/llaveIcon.png"
+import ico2S4 from "../../recursos/cocineroIcon.png"
+import ico3S4 from "../../recursos/pcIcon.png"
+import ico4S4 from "../../recursos/bancosIcon.png"
+
+
 
 
 const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
@@ -29,6 +35,7 @@ const SECTOR_CARDS = [
     id: 's1',
     code: 'S1',
     name: 'Talleres',
+    image:ico1S4,
     description: 'Espacios de formacion tecnica y practica',
     icon: WrenchIcon,
     cardClass: styles.sectorCardS1,
@@ -37,6 +44,7 @@ const SECTOR_CARDS = [
     id: 's2',
     code: 'S2',
     name: 'Cocina',
+    image:ico2S4,
     description: 'Cocina, Pasteleria y Cocteleria',
     icon: WrenchIcon,
     cardClass: styles.sectorCardS2,
@@ -45,6 +53,7 @@ const SECTOR_CARDS = [
     id: 's3',
     code: 'S3',
     name: 'Administración / Informatica	',
+    image:ico3S4,
     description: 'Oficinas administrativas e informática',
     icon: WrenchIcon,
     cardClass: styles.sectorCardS3,
@@ -53,6 +62,7 @@ const SECTOR_CARDS = [
     id: 's4',
     code: 'S4',
     name: 'Patio y Buffet',
+    image:ico4S4,
     description: 'Patio principal y servicio de buffet',
     icon: WrenchIcon,
     cardClass: styles.sectorCardS4,
@@ -65,6 +75,7 @@ const UTILITY_CARDS = [
     title: 'Baños',
     description: 'Baños para estudiantes',
     icon: RestroomIcon,
+    image:ico1S4,
     cardClass: styles.utilityCard1,
   },
   {
@@ -181,7 +192,7 @@ export default function MapPage() {
 
             <div className={styles.sectorGrid}>
               {SECTOR_CARDS.map((sector) => {
-                const Icon = sector.icon
+                //const Icon = sector.icon
 
                 return (
                   <button
@@ -191,7 +202,7 @@ export default function MapPage() {
                   >
                     <span className={styles.sectorCode}>{sector.code}</span>
                     <div className={styles.sectorIconWrap}>
-                      <Icon />
+                      <img src={sector.image} width="60%" />
                     </div>
                     <div className={styles.sectorFooter}>
                       <div className={styles.sectorTextGroup}>
