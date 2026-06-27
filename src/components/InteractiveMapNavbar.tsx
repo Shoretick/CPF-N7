@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AccessibilityButton from './AccessibilityButton'
 import styles from './InteractiveMapNavbar.module.css'
+import logo from "../../recursos/logo.png"
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/inicio#inicio' },
@@ -28,7 +29,18 @@ export default function InteractiveMapNavbar() {
 
         <div className={styles.brand}>
           <div className={styles.logoSlot} aria-label="Logo del CFP N.° 7">
-            <span className={styles.logoPlaceholder}>Logo</span>
+            <Link
+          to="/inicio"
+          
+          aria-label="Volver a la página anterior"
+          
+        >
+        
+        
+            <span className={styles.logoPlaceholder}>
+              <img src={logo} alt="logo" width="100%"/>
+            </span>
+            </Link>
           </div>
           <div className={styles.brandTextGroup}>
             <span className={styles.brandTitle}>CFP N°7</span>

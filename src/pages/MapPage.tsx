@@ -10,6 +10,7 @@ import ico1S4 from "../../recursos/llaveIcon.png"
 import ico2S4 from "../../recursos/cocineroIcon.png"
 import ico3S4 from "../../recursos/pcIcon.png"
 import ico4S4 from "../../recursos/bancosIcon.png"
+import { Link } from 'react-router-dom'
 
 
 
@@ -74,6 +75,7 @@ const UTILITY_CARDS = [
     id: 'u1',
     title: 'Baños',
     description: 'Baños para estudiantes',
+    link:"/bcomun",
     icon: RestroomIcon,
     image:ico1S4,
     cardClass: styles.utilityCard1,
@@ -82,6 +84,7 @@ const UTILITY_CARDS = [
     id: 'u2',
     title: 'Baño Accesible',
     description: 'baño adaptado para personas con discapacidad',
+    link:null,
     icon: RestroomIcon,
     cardClass: styles.utilityCard2,
   },
@@ -89,6 +92,7 @@ const UTILITY_CARDS = [
     id: 'u3',
     title: 'Primeros auxilios',
     description: 'Botiquin y atencion de emergencias.',
+    link:null,
     icon: RestroomIcon,
     cardClass: styles.utilityCard3,
   },
@@ -96,6 +100,7 @@ const UTILITY_CARDS = [
     id: 'u4',
     title: "Agua potable",
     description: 'Puntos de agua disponibles',
+    link:null,
     icon: RestroomIcon,
     cardClass: styles.utilityCard4,
   },
@@ -103,6 +108,7 @@ const UTILITY_CARDS = [
     id: 'u5',
     title: 'Extintores y seguridad',
     description: 'Elementos de seguridad',
+    link:null,
     icon: RestroomIcon,
     cardClass: styles.utilityCard5,
   },
@@ -223,11 +229,15 @@ export default function MapPage() {
                 const Icon = utility.icon
 
                 return (
-                  <button
+                  <Link to ={utility.link} style={{ textDecoration: 'none' }} >
+                  <div
                     key={utility.id}
-                    type="button"
+                  
                     className={`${styles.utilityCard} ${utility.cardClass}`}
                   >
+                    
+            
+          
                     <div className={styles.utilityTop}>
                     <div>
                       <Icon />
@@ -239,10 +249,13 @@ export default function MapPage() {
                     <div className={styles.utilityFooter}>
                       <p className={styles.utilityDescription}>{utility.description}</p>
                       <span className={styles.utilityArrow} aria-hidden="true">
-                        &gt;
+                        &gt; 
                       </span>
                     </div>
-                  </button>
+                    
+                  </div>
+
+                  </Link>
                 )
               })}
             </div>
@@ -285,11 +298,11 @@ function WrenchIcon() {
 
 function RestroomIcon() {
   return (
-    <svg className={styles.utilityIcon} viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M7.5 3C6.67 3 6 3.67 6 4.5S6.67 6 7.5 6 9 5.33 9 4.5 8.33 3 7.5 3zM16.5 3C15.67 3 15 3.67 15 4.5S15.67 6 16.5 6 18 5.33 18 4.5 17.33 3 16.5 3zM12 7c-1.66 0-3 1.34-3 3v1H7v10h2v-4h6v4h2V11h-2v-1c0-1.66-1.34-3-3-3zm-1 3h2v-1c0-.55-.45-1-1-1s-1 .45-1 1v1z"
-      />
+    <svg className={styles.utilityIcon} viewBox="0 0 24 24" aria-hidden="true"fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+  <path d="M12 4v4"></path>
+  <path d="M9 12h6"></path>
+  <path d="M12 16v4"></path>
     </svg>
   )
 }

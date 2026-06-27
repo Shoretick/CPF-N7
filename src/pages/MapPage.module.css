@@ -337,6 +337,7 @@
   --utility-text: #1a242b;
   --utility-arrow-bg: #a3a3a3;
   --utility-arrow-color: #1a242b;
+  
 
   display: flex;
   flex-direction: column;
@@ -355,6 +356,7 @@
 .utilityCard:hover {
   border-color: #a3a3a3;
   box-shadow: 0 4px 12px rgba(26, 36, 43, 0.08);
+  
 }
 
 .utilityCard:focus-visible {
@@ -372,6 +374,7 @@
   --utility-text: #1a242b;
   --utility-arrow-bg: #a3a3a3;
   --utility-arrow-color: #1a242b;
+  height: 9rem;
 }
 
 .utilityTop {
@@ -380,7 +383,8 @@
   margin-bottom: 0.25rem;
   align-items: center;
   justify-items: center;
-  padding-right:4%;
+  padding-right:8%;
+  padding-left: -2%;
 }
 
 .utilityIcon {

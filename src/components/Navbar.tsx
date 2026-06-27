@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from './Navbar.module.css'
+import logo from "../../recursos/logo.png"
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '#inicio' },
@@ -18,7 +19,8 @@ export default function Navbar() {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <div className={styles.logoSlot} aria-label="Logo del CFP N.° 7">
-            <span className={styles.logoPlaceholder}>Logo</span>
+            <span className={styles.logoPlaceholder}>
+              <img src={logo} alt="logo" width="100%"/></span>
           </div>
           <span className={styles.brandTextDesktop}>
             CFP N° 7 - Formacion profesional
