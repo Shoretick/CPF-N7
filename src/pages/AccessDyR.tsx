@@ -5,11 +5,10 @@ import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './AccessDyR.module.css'
 
-import mapaDelEdificio from "../../recursos/mapaHD.png"
+
 import ico1S4 from "../../recursos/llaveIcon.png"
 import ico2S4 from "../../recursos/cocineroIcon.png"
-import ico3S4 from "../../recursos/pcIcon.png"
-import ico4S4 from "../../recursos/bancosIcon.png"
+
 import AccRamsay from "../../recursos/AccRamsay.jpg"
 import AccDragones from "../../recursos/AccDragones.jpg"
 
