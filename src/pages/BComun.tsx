@@ -17,7 +17,7 @@ import imgBComun2 from "../../recursos/imgBcomun2.png"
 
 
 
-const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
+const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`);
 
 
 

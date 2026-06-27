@@ -17,7 +17,7 @@ import AccDragones from "../../recursos/AccDragones.jpg"
 
 
 
-const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
+const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`);
 
 
 
