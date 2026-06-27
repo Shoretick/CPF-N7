@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useVoiceAnnouncement } from '../context/AccessibilityContext'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
-import styles from './Bcomun.module.css'
+import styles from './BComun.module.css'
 
 
 import ico1S4 from "../../recursos/llaveIcon.png"
