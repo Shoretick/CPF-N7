@@ -33,13 +33,12 @@ export default function LocationSectionDyR( {MAP_EMBED_URL,title,description}) {
         
 
         <div className={styles.actions}>
-          <button type="button" className={styles.buttonPrimary}>
-            <Link to="/inicio" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Ir al inicio
-            </Link>
-          </button>
+          
+          <Link to="/inicio" className={styles.buttonPrimary}>
+             Ir al Inicio
+          </Link>
           <Link to="/accesoDyR" className={styles.buttonSecondary}>
-           todos los accesos
+           Accesos
           </Link>
         </div>
       </div>

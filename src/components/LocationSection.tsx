@@ -33,12 +33,11 @@ export default function LocationSection( {MAP_EMBED_URL}) {
 
         <h3 className={styles.subtitle}>Mapa interactivo accesible</h3>
 
-        <div className={styles.actions}>
-          <button type="button" className={styles.buttonPrimary}>
-            <Link to="/accesodyr" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Recorre el CFP N° 7
-            </Link>
-          </button>
+        <div className={styles.actions} >
+           
+          <Link to="/accesodyr" className={styles.buttonPrimary}>
+             Recorre el CFP N° 7
+          </Link>
           <Link to="/mapa" className={styles.buttonSecondary}>
             ¿Como llego al aula?
           </Link>
