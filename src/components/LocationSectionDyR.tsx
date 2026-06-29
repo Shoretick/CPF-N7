@@ -1,24 +1,23 @@
 import { Link } from 'react-router-dom'
-import styles from './LocationSection.module.css'
+import styles from './LocationSectionDyR.module.css'
 
 
 
-export default function LocationSection( {MAP_EMBED_URL}) {
+export default function LocationSectionDyR( {MAP_EMBED_URL,title,description}) {
   return (
     <section className={styles.section} id="ubicacion" aria-labelledby="ubicacion-titulo">
       <div className={styles.card}>
         <h2 className={styles.title} id="ubicacion-titulo">
-          ¿Donde nos encontramos?
+         {title}
         </h2>
 
         <div className={styles.divider} role="separator" aria-hidden="true" />
 
         <p className={styles.description}>
-          Ingresar por Dragones 2201 durante todo el dia o bien por Ramsay 2250 hasta
-          las 13 hs.
+         {description}
         </p>
 
-        <h3 className={styles.subtitle}>Mapa</h3>
+        <h3 className={styles.subtitle}>Vista 360</h3>
 
         <div className={styles.mapWrapper}>
           <iframe
@@ -31,16 +30,16 @@ export default function LocationSection( {MAP_EMBED_URL}) {
           />
         </div>
 
-        <h3 className={styles.subtitle}>Mapa interactivo accesible</h3>
+        
 
         <div className={styles.actions}>
           <button type="button" className={styles.buttonPrimary}>
-            <Link to="/accesodyr" style={{ textDecoration: 'none', color: 'inherit' }}>
-            Recorre el CFP N° 7
+            <Link to="/inicio" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Ir al inicio
             </Link>
           </button>
-          <Link to="/mapa" className={styles.buttonSecondary}>
-            ¿Como llego al aula?
+          <Link to="/accesoDyR" className={styles.buttonSecondary}>
+           todos los accesos
           </Link>
         </div>
       </div>

@@ -11,6 +11,7 @@ import ico2S4 from "../../recursos/cocineroIcon.png"
 
 import imgBComun from "../../recursos/imgBcomun.png"
 import imgBComun2 from "../../recursos/imgBcomun2.png"
+import { Link } from 'react-router-dom'
 
 
 
@@ -210,10 +211,11 @@ export default function BComun() {
        
               </div >
               <div  className={styles.contbotton}>
-              <button type="button" className={styles.planButton1}>
-              <span>Quiero ir acá</span>
+                <Link to={'/inicio'}style={{ textDecoration: 'none', color: 'inherit' }}>
+              <button type="button" className={styles.planButton1} >
+              <span>Quiero ir acá (inicio)</span>
               <ArrowRightIcon />
-              </button>
+              </button></Link>
               </div>
       
              

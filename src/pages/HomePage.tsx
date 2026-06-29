@@ -12,7 +12,8 @@ export default function HomePage() {
           Formación profesional en navegación asistida y accesibilidad.
         </p>
 
-        <LocationSection />
+        <LocationSection MAP_EMBED_URL={'https://maps.google.com/maps?q=Centro+de+Formaci%C3%B3n+Profesional+CFP+N%C2%B07+Ramsay+2250,+C1428+Cdad.+Aut%C3%B3noma+de+Buenos+Aires,+Argentina&hl=es&z=16&output=embed'}
+/>
       </main>
     </div>
   )

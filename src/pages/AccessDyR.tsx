@@ -4,6 +4,9 @@ import { useVoiceAnnouncement } from '../context/AccessibilityContext'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './AccessDyR.module.css'
+import AccessSelection from "../components/AccessCard/AccessSelection"
+import AccessSelectionDesktop from '../components/AccessSelection/AccessSelectionDesktop'
+import { Link } from 'react-router-dom'
 
 
 import ico1S4 from "../../recursos/llaveIcon.png"
@@ -125,62 +128,10 @@ export default function AccessDyR () {
                   const isSelected = selectedSpace === space.label
 
                   return (
-                    <button
-                      
-                    
-                      className={`${styles.spaceCard} ${isSelected ? styles.spaceCardSelected : ''}`}
-                      onClick={() => handleSpaceSelect(space.label)}
-                    >{ space.img1? 
+                     <div>
+        <AccessSelection></AccessSelection>
+      </div>
 
-                     <div className={styles.cont1}>
-                      <div style={{width:"40%", backgroundColor:'blue'}}>
-                        <img src=  {space.img1} alt="img" width="100%" height="100%" ></img>
-                      </div>
-                      <div style={{width:"45%", }}> 
-                        <h2>Acceso Ramsay</h2>
-                        <h4>calle Ramsay 2250</h4>
-                        <div style={{width:"75%", backgroundColor:"#E2A900"}}>
-                          <span >Este acceso está abierto</span>
-                        <span>desde las 9 AM hasta 6 PM</span>
-                        </div>
-                        
-                      </div>
-                      <div style={{width:"15%"}}>
-                       <input type="checkbox" id="mi-check" name="opcion"></input>
-                      </div>
-
-                      
-                      
-                    </div>
-
-
-                    : 
-                    <div className={styles.cont1} >
-                      <div style={{width:"40%", backgroundColor:'blue'}}>
-                        <img src=  {space.img2} alt="img" width="100%" height="100%" ></img>
-                      </div>
-                      <div style={{width:"45%", }}> 
-                        <h2>Acceso Ramsay</h2>
-                        <h4>calle Ramsay 2250</h4>
-                        <div style={{width:"90%", backgroundColor:"#E2A900", borderRadius:"10%"}}>
-                          <span >Este acceso está abierto desde las 9 AM hasta 6 PM</span>
-                        <span></span>
-                        </div>
-                        
-                      </div>
-                      <div style={{width:"15%",margin:"4%"}}>
-                       <input type="checkbox" id="mi-check" name="opcion"></input>
-                      </div>
-
-                      
-                      
-                    </div>
-                  
-                    }
-                      
-                      
-                      
-                    </button>
                   )
                 })}
               </div>
@@ -191,6 +142,7 @@ export default function AccessDyR () {
 
 
           <button type="button" className={styles.planButton}>
+            
             <span>Quiero ir acá</span>
             <ArrowRightIcon />
           </button>
@@ -208,54 +160,8 @@ export default function AccessDyR () {
 
       <div className={styles.desktopLayout}>
         <div className={styles.desktopContent}>
-          <section className={styles.desktopLeft}>
-            <h1 className={styles.desktopTitle}>Baño Común (Sanitarios Sector 3) </h1>
-
-            <h2 className={styles.desktopSectionTitle}>Normas de Anticipación/Accesibilidad Cognitiva</h2>
-
+          <AccessSelectionDesktop></AccessSelectionDesktop>
          
-
-         
-          </section>
-
-          <aside className={styles.desktopRight}>
-            <div className={styles.floorPlanCard}>
-            
-              <div className={styles.floorPlanImageSlot} aria-label="Plano del edificio">
-
-              <div className= {styles.contImg}>
-                <img
-                 src={AccRamsay}
-                 alt="Mapa del edificio"
-                 width={"100%"} // Ajusta el ancho según tus necesidades
-                 height={"100%"} // Ajusta el alto según tus necesidades
-                 style={{ borderRadius:"10%" }}
-                  />
-              </div>
-
-               <div className= {styles.contText}>
-              <h1 className={styles.floorPlanTitle1}>ANTES DE INGRESAR DEBE: </h1>
-              <h2 className={styles.floorPlanTitle}><span>✅</span> Transitar por el pasillo de forma ordenada.</h2>
-              <h2 className={styles.floorPlanTitle}><span>✅</span> Mantener la higiene del sector</h2>
-              <h2 className={styles.floorPlanTitle}><span>✅</span> Respetar las indicaciones visuales y cartelería.</h2>
-              <h2 className={styles.floorPlanTitle}><span>✅</span> Consultar al docente o bedel ante cualquier duda.</h2>
-              
-               </div>
-        
-       
-       
-              </div >
-              <div  className={styles.contbotton}>
-              <button type="button" className={styles.planButton1}>
-              <span>Quiero ir acá</span>
-              <ArrowRightIcon />
-              </button>
-              </div>
-      
-             
-               
-            </div>
-          </aside>
         </div>
         
       </div>
