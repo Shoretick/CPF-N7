@@ -27,7 +27,7 @@ const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`);
 const SPACE_CARDS = [
   [
     { id: 'Baño Commun', label: 'Baño Comun', img1: AccRamsay, icon: ClassroomIcon  },
-    { id: 'taller', label: 'Taller', icon: WorkshopIcon, img2: AccDragones } , 
+    
   
   ],
   
