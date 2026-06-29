@@ -138,14 +138,6 @@ export default function AccessDyR () {
             ))}
           </div>
 
-
-
-
-          <button type="button" className={styles.planButton}>
-            
-            <span>Quiero ir acá</span>
-            <ArrowRightIcon />
-          </button>
         </main>
       </div>
 
