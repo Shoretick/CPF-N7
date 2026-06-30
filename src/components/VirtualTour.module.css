@@ -1,0 +1,262 @@
+/* --- Contenedor General --- */
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #002855;
+  box-sizing: border-box;
+}
+
+/* --- VERSIÓN ESCRITORIO --- */
+.desktopLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+.columnTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #002855;
+}
+
+.mapWrapper {
+  border: 4px solid #004c66;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.mapImg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contenedor del Visor 360 (Marzipano o Mock) */
+.viewer360 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #002855;
+}
+
+.marzipanoContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Superposiciones sobre el visor 360 */
+.floatingTooltip {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(30, 41, 59, 0.9);
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.closeTooltip {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.floatingMinimap {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.minimapThumb {
+  width: 80px;
+  height: auto;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Controles de navegación simulados */
+.navArrows {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.arrowUp, .arrowAction {
+  background-color: rgba(0, 76, 102, 0.85);
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.arrowAction {
+  width: 44px;
+  height: 44px;
+  background-color: #004c66;
+}
+
+/* Carrusel de escenas inferior */
+.scenesCarousel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  overflow-x: auto;
+}
+
+.sceneThumb {
+  flex: 0 0 90px;
+  height: 55px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.sceneThumbActive {
+  border-color: #74b9e6;
+}
+
+.sceneLabel {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  font-size: 0.65rem;
+  color: white;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+}
+
+/* --- VERSIÓN MOBILE --- */
+.mobileLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mobileSectionTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.routeSelector {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.routeLabel {
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.routeBtn, .changeLink {
+  width: 100%;
+}
+
+.routeBtn {
+  background-color: #74b9e6;
+  color: #002855;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+}
+
+.changeLink {
+  font-size: 0.75rem;
+  color: #004b87;
+  text-decoration: none;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+/* --- BOTÓN ACCIÓN PRINCIPAL --- */
+.actionRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.primaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #74b9e6;
+  color: #002855;
+  text-decoration: none;
+  padding: 14px 60px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+  width: 100%;
+  max-width: 320px;
+}
+
+.primaryActionBtn:hover {
+  background-color: #5fa8d3;
+}
+
+.btnArrow {
+  margin-left: 15px;
+  font-size: 1.2rem;
+}
