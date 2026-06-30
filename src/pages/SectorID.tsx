@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useVoiceAnnouncement } from '../context/AccessibilityContext'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './SectorID.module.css'
+import { sectoresData } from "../data/sectoresData"
 
-import ico1S4 from "../../recursos/llaveIcon.png"
 import imgBComun from "../../recursos/imgBcomun.png"
 import imgBComun2 from "../../recursos/imgBcomun2.png"
 
@@ -19,6 +19,21 @@ const SPACE_CARDS = [
 export default function SectorID() {
   const [selectedSpace, setSelectedSpace] = useState<string | null>(null)
   const announce = useVoiceAnnouncement()
+  const { sectorId } = useParams();
+
+  // 1. Buscamos el sector en el diccionario de datos
+  const infoSector = sectoresData[sectorId || ''];
+  
+  // 2. CONTROL DE SEGURIDAD: Si no existe el sector, evitamos que la app se rompa
+  if (!infoSector) {
+    return (
+      <div style={{ padding: "40px", textAlign: "center", color: "red" }}>
+        <h2>⚠️ Error: Sector "{sectorId}" no configurado</h2>
+        <p>Asegúrate de agregar la clave exacta en tu archivo sectoresData.js</p>
+        <Link to="/inicio">Volver al inicio</Link>
+      </div>
+    );
+  }
 
   const handleSpaceSelect = (label: string) => {
     setSelectedSpace(label)
@@ -32,9 +47,10 @@ export default function SectorID() {
         <AccessibilityButton variant="floating" />
       </div>
 
+      {/* --- VISTA MOBILE --- */}
       <div className={styles.mobileLayout}>
         <main className={styles.mobileMain}>
-          <h1 className={styles.mobileTitle}>Baño Común (Sanitarios Sector 3)</h1>
+          <h1 className={styles.mobileTitle}>{infoSector.titulo}</h1>
 
           <div className={styles.selectWrapper}></div>
 
@@ -52,13 +68,15 @@ export default function SectorID() {
                     >
                       {space.img1 ? (
                         <div>
-                          <img src={space.img1} alt="img" width="100%" height="80%" className={styles.img1} />
+                          {/* Cambiado para usar la imagen dinámica del sector */}
+                          <img src={infoSector.imagen} alt="img" width="100%" height="80%" className={styles.img1} />
                         </div>
                       ) : (
                         <>
                           <div>
-                            <img src={space.img2} alt="img" width="100%" height="100%" />
+                            <img src={space.img2} alt="image" width="100%" height="100%" />
                           </div>
+                          
                           <span className={styles.spaceLabel}>{space.label}</span>
                         </>
                       )}
@@ -76,10 +94,12 @@ export default function SectorID() {
         </main>
       </div>
 
+      {/* --- VISTA DESKTOP (¡Ahora también dinámica!) --- */}
       <div className={styles.desktopLayout}>
         <div className={styles.desktopContent}>
           <section className={styles.desktopLeft}>
-            <h1 className={styles.desktopTitle}>Baño Común (Sanitarios Sector 3)</h1>
+            {/* TÍTULO DINÁMICO */}
+            <h1 className={styles.desktopTitle}>{infoSector.titulo}</h1>
             <h2 className={styles.desktopSectionTitle}>Normas de Anticipación/Accesibilidad Cognitiva</h2>
           </section>
 
@@ -87,9 +107,10 @@ export default function SectorID() {
             <div className={styles.floorPlanCard}>
               <div className={styles.floorPlanImageSlot} aria-label="Plano del edificio">
                 <div className={styles.contImg}>
+                  {/* IMAGEN DINÁMICA */}
                   <img
-                    src={imgBComun}
-                    alt="Mapa del edificio"
+                    src={infoSector.imagen}
+                    alt={`Mapa de ${infoSector.titulo}`}
                     width="100%"
                     height="100%"
                     style={{ borderRadius: "10%" }}
@@ -98,10 +119,13 @@ export default function SectorID() {
 
                 <div className={styles.contText}>
                   <h1 className={styles.floorPlanTitle1}>ANTES DE INGRESAR DEBE:</h1>
-                  <h2 className={styles.floorPlanTitle}><span>✅</span> Transitar por el pasillo de forma ordenada.</h2>
-                  <h2 className={styles.floorPlanTitle}><span>✅</span> Mantener la higiene del sector</h2>
-                  <h2 className={styles.floorPlanTitle}><span>✅</span> Respetar las indicaciones visuales y cartelería.</h2>
-                  <h2 className={styles.floorPlanTitle}><span>✅</span> Consultar al docente o bedel ante cualquier duda.</h2>
+                  
+                  {/* MAPEO DINÁMICO DE NORMAS */}
+                  {infoSector.normas && infoSector.normas.map((norma, index) => (
+                    <h2 key={index} className={styles.floorPlanTitle}>
+                      <span>✅</span> {norma}
+                    </h2>
+                  ))}
                 </div>
               </div>
               
@@ -121,8 +145,7 @@ export default function SectorID() {
   )
 }
 
-// --- Componentes de Apoyo de Íconos estrictamente necesarios ---
-
+// --- Componentes de Apoyo de Íconos ---
 function ClassroomIcon() {
   return (
     <svg className={styles.spaceIcon} viewBox="0 0 24 24" aria-hidden="true">

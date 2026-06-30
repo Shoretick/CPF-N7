@@ -15,6 +15,10 @@
 }
 
 .backButton {
+  background: transparent;  /* Quita el fondo gris */
+  border: none;             /* Quita el borde de botón */
+  padding: 0;               /* Quita márgenes internos */
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

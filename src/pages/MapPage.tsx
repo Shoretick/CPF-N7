@@ -20,14 +20,14 @@ const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
 
 const SPACE_CARDS = [
   [
-    { id: 'aula', label: 'Aula', icon: ClassroomIcon },
-    { id: 'taller', label: 'Taller', icon: WorkshopIcon },
-    { id: 'recreo', label: 'Recreo', icon: PlaygroundIcon },
+    { id: 'aula', label: 'Aula', icon: ClassroomIcon, link:"/sector/aula"},
+    { id: 'taller', label: 'Taller', icon: WorkshopIcon, link:"/sector/taller" },
+    { id: 'recreo', label: 'Recreo', icon: PlaygroundIcon , link:"/sector/recreo" },
   ],
   [
-    { id: 'cocina', label: 'Cocina', icon: KitchenIcon },
-    { id: 'informatica', label: 'Informatica', icon: ComputerIcon },
-    { id: 'informacion', label: 'Informacion', icon: InfoIcon },
+    { id: 'cocina', label: 'Cocina', icon: KitchenIcon , link:"/sector/cocina" },
+    { id: 'informatica', label: 'Informatica', icon: ComputerIcon , link:"/sector/informatica" },
+    { id: 'informacion', label: 'Informacion', icon: InfoIcon , link:"/sector/informacion" },
   ],
 ] as const
 
@@ -75,7 +75,7 @@ const UTILITY_CARDS = [
     id: 'u1',
     title: 'Baños',
     description: 'Baños para estudiantes',
-    link:"/bcomun",
+    link:"/sector/banos",
     icon: RestroomIcon,
     image:ico1S4,
     cardClass: styles.utilityCard1,
@@ -84,15 +84,15 @@ const UTILITY_CARDS = [
     id: 'u2',
     title: 'Baño Accesible',
     description: 'baño adaptado para personas con discapacidad',
-    link:null,
+    link:"/sector/banos-accesible",
     icon: RestroomIcon,
     cardClass: styles.utilityCard2,
   },
   {
     id: 'u3',
-    title: 'Primeros auxilios',
+    title: 'primeros auxilios',
     description: 'Botiquin y atencion de emergencias.',
-    link:null,
+    link:"/sector/primeros-auxilios",
     icon: RestroomIcon,
     cardClass: styles.utilityCard3,
   },
@@ -100,7 +100,7 @@ const UTILITY_CARDS = [
     id: 'u4',
     title: "Agua potable",
     description: 'Puntos de agua disponibles',
-    link:null,
+    link:"/sector/agua-potable",
     icon: RestroomIcon,
     cardClass: styles.utilityCard4,
   },
@@ -108,7 +108,7 @@ const UTILITY_CARDS = [
     id: 'u5',
     title: 'Extintores y seguridad',
     description: 'Elementos de seguridad',
-    link:null,
+    link:"/sector/extintores-y-seguridad",
     icon: RestroomIcon,
     cardClass: styles.utilityCard5,
   },
@@ -167,15 +167,15 @@ export default function MapPage() {
                   const isSelected = selectedSpace === space.label
 
                   return (
-                    <button
-                      key={space.id}
+                    <Link to={space.link} key={space.id} style={{ textDecoration: 'none' }}
                       type="button"
                       className={`${styles.spaceCard} ${isSelected ? styles.spaceCardSelected : ''}`}
-                      onClick={() => handleSpaceSelect(space.label)}
-                    >
+                      onClick={() => handleSpaceSelect(space.label)}>
+                    
                       <Icon />
                       <span className={styles.spaceLabel}>{space.label}</span>
-                    </button>
+                   
+                    </Link>
                   )
                 })}
               </div>

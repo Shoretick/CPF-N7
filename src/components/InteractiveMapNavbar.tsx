@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AccessibilityButton from './AccessibilityButton'
 import styles from './InteractiveMapNavbar.module.css'
 import logo from "../../recursos/logo.png"
+import { useNavigate } from 'react-router-dom';
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/inicio#inicio' },
@@ -12,6 +13,7 @@ const NAV_LINKS = [
 ] as const
 
 export default function InteractiveMapNavbar() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
@@ -19,13 +21,14 @@ export default function InteractiveMapNavbar() {
   return (
     <header className={styles.navbar}>
       <div className={styles.inner}>
-        <Link
-          to="/inicio"
+        <button
+          onClick={() => navigate(-1)}
           className={styles.backButton}
           aria-label="Volver a la página anterior"
+          
         >
           <BackIcon />
-        </Link>
+        </button>
 
         <div className={styles.brand}>
           <div className={styles.logoSlot} aria-label="Logo del CFP N.° 7">
