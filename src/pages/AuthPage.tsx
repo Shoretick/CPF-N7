@@ -2,9 +2,10 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGoogleLogin } from '@react-oauth/google'
 import styles from './AuthPage.module.css'
+import logo from "../../recursos/logo.png"
 
-const ADMIN_USER = ''
-const ADMIN_PASSWORD = ''
+const ADMIN_USER = 'admin'
+const ADMIN_PASSWORD = 'admin'
 
 export default function AuthPage() {
   const navigate = useNavigate()
@@ -36,8 +37,8 @@ export default function AuthPage() {
   return (
     <div className={styles.page}>
       <div className={styles.card}>
-        <div className={styles.logoSlot} aria-label="Logo del CFP N.° 7">
-          <span className={styles.logoPlaceholder}>Logo</span>
+        <div  aria-label="Logo del CFP N.° 7">
+          <span className={styles.logoPlaceholder}><img src={logo}></img></span>
         </div>
 
         <h1 className={styles.title}>CFP N.° 7</h1>

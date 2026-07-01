@@ -20,7 +20,7 @@ const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
 
 const SPACE_CARDS = [
   [
-    { id: 'entrada', label: 'Entrada', icon: ClassroomIcon, link:"/tour360"},
+    { id: 'entrada', label: 'Entrada', icon: ClassroomIcon, link:"/sector/entrada1"},
     { id: 'taller', label: 'Taller', icon: WorkshopIcon, link:"/sector/taller" },
     { id: 'recreo', label: 'Recreo', icon: PlaygroundIcon , link:"/sector/recreo" },
   ],
@@ -71,6 +71,15 @@ const SECTOR_CARDS = [
 ] as const
 
 const UTILITY_CARDS = [
+  {
+    id: 'u1',
+    title: 'Entrada',
+    description: 'Entrada 360 interactiva.',
+    link:"/sector/entrada1",
+    icon: RestroomIcon,
+    image:ico1S4,
+    cardClass: styles.utilityCard1,
+  },
   {
     id: 'u1',
     title: 'Baños',
@@ -182,10 +191,10 @@ export default function MapPage() {
             ))}
           </div>
 
-          <button type="button" className={styles.planButton}>
+          <Link to="/mapmobile"type="button" className={styles.planButton} style={{ textDecoration: 'none' }}>
             <span>Ver el plano del Centro</span>
             <ArrowRightIcon />
-          </button>
+          </Link>
         </main>
       </div>
 

@@ -69,7 +69,7 @@ export default function SectorID() {
                       {space.img1 ? (
                         <div>
                           {/* Cambiado para usar la imagen dinámica del sector */}
-                          <img src={infoSector.imagen} alt="img" width="100%" height="80%" className={styles.img1} />
+                          <img src={infoSector.imagen} alt="img" className={styles.img1} />
                         </div>
                       ) : (
                         <>
@@ -86,11 +86,12 @@ export default function SectorID() {
               </div>
             ))}
           </div>
-
+          <Link to={infoSector.botonUrl? infoSector.botonUrl:'/inicio' }style={{ textDecoration: 'none', color: 'inherit' }}>
           <button type="button" className={styles.planButton}>
             <span>Quiero ir acá</span>
             <ArrowIcon />
           </button>
+          </Link>
         </main>
       </div>
 
@@ -130,7 +131,7 @@ export default function SectorID() {
               </div>
               
               <div className={styles.contbotton}>
-                <Link to='/inicio' style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link to={infoSector.botonUrl? infoSector.botonUrl:'/inicio' }style={{ textDecoration: 'none', color: 'inherit' }}>
                   <button type="button" className={styles.planButton1}>
                     <span>Quiero ir acá (inicio)</span>
                     <ArrowIcon />

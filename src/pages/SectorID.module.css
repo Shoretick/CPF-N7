@@ -78,7 +78,8 @@
 }
 .img1{
   border-radius: 10%;
-  width:110%;
+  width:100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
 }
@@ -87,9 +88,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   min-height: 20rem;
-  padding: 1rem 0.75rem;
+  padding: 0.1rem 0.1rem;
   background-color: #f9f9f9;
   border: 2px solid transparent;
   border-radius: 10px;
@@ -359,8 +360,6 @@
   line-height: 1.4;
   color: var(--sector-text);
   min-height: calc(0.75rem * 1.4 * 2);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   

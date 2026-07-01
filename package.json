@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.5",
+    "prop-types": "^15.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-quick-pinch-zoom": "^5.1.1",
     "react-router-dom": "^7.18.0"
   },
   "devDependencies": {

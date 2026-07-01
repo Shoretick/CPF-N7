@@ -5,6 +5,7 @@ export default function VirtualTour({
   destinationName = "Gastronomía B",
   originName = "Acceso Ramsay",
   mapImageUrl,
+  miniMapImageUrl,
   scenes = [],
   destinationChangeRoute = "#",
   originChangeRoute = "#",
@@ -63,14 +64,11 @@ export default function VirtualTour({
           </div>
 
           <div className={styles.floatingMinimap}>
-            <img src={mapImageUrl} className={styles.minimapThumb} alt="Mini mapa" />
+            <img src={miniMapImageUrl} className={styles.minimapThumb} alt="Mini mapa" />
             <div>Estás aquí</div>
           </div>
 
-          <div className={styles.navArrows}>
-            <div className={styles.arrowUp}>↑</div>
-            <div className={styles.arrowAction}>↑</div>
-          </div>
+          
 
           <div className={styles.scenesCarousel}>
             {scenes.map((scene, idx) => (
@@ -114,7 +112,7 @@ export default function VirtualTour({
   );
 
   return (
-    /* CORREGIDO: Ahora utiliza correctamente el objeto styles de CSS Modules */
+   
     <div className={styles.container}>
       {isMobile ? renderMobile() : renderDesktop()}
 

@@ -98,7 +98,7 @@ const UTILITY_CARDS = [
 
 export default function Tour360() {
 const lasEscenasDeEstaRuta = [
-    { name: "Acceso Ramsay", thumbUrl: "../../recursos/llaveIcon.png" },
+    { name: "Acceso Ramsay", thumbUrl: "https://via.placeholder.com/90x55" },
     { name: "Pasillo cubierto", thumbUrl: "https://via.placeholder.com/90x55" },
     { name: "Patio central", thumbUrl: "https://via.placeholder.com/90x55" },
     { name: "Pasillo lateral", thumbUrl: "https://via.placeholder.com/90x55" }
@@ -155,10 +155,11 @@ const lasEscenasDeEstaRuta = [
  <VirtualTour 
         destinationName="Gastronomía B"
         originName="Acceso Ramsay"
-        mapImageUrl="../../recursos/AccRamsay.jpg" // Cambia por tu SVG/PNG del plano
+        miniMapImageUrl="../../recursos/miniplano1.jpg"
+        mapImageUrl="../../recursos/plano1.jpg" // Cambia por tu SVG/PNG del plano
         scenes={lasEscenasDeEstaRuta}
-        destinationChangeRoute="/inicio"
-        originChangeRoute="/cambiar-origen"
+        destinationChangeRoute=""
+        originChangeRoute=""
         startNavigationRoute="/marzipano-360"
       />
 

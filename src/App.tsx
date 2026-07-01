@@ -10,6 +10,8 @@ import AccessD360 from './pages/accessDyR360/AccessD360'
 import SectorID from './pages/SectorID'
 import Marzipano from './pages/Marzipano360/Marzipano'
 import Tour360 from './pages/Tour360'
+import MapMobilePage from './pages/MapMobilePage'
+
 
 export default function App() {
   return (
@@ -26,6 +28,7 @@ export default function App() {
           <Route path="/accesod360" element={<AccessD360 />} />
           <Route path="/marzipano-360" element={<Marzipano />} />
            <Route path="/tour360" element={<Tour360 />} />
+            <Route path="/mapmobile" element={<MapMobilePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

@@ -10,6 +10,17 @@ export const sectoresData = {
       "Consultar al docente o bedel ante cualquier duda."
     ]
   },
+  
+  "entrada1": {
+    titulo: "Entrada 360",
+    imagen: "../../recursos/entrada1.jpg",
+    botonUrl:"/tour360",
+    normas: [
+      "Uso prioritario para personas con discapacidad.",
+      "Mantener el espacio libre de obstáculos.",
+     
+    ]
+  },
   "banos-accesible": {
     titulo: "Baño Accesible",
     imagen: "https://simex.es/wp-content/uploads/2022/06/residencial-01-v3-1024x667.jpg",
