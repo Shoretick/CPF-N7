@@ -1,4 +1,4 @@
-import entrada1 from "../../recursos/entrada1.png"
+import entrada1 from "../../recursos/entrada1.jpg"
 
 
 export const sectoresData = {
