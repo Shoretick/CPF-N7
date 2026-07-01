@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 import ico1S4 from "../../recursos/llaveIcon.png"
 import ico2S4 from "../../recursos/cocineroIcon.png"
 
-import AccRamsay from "../../recursos/AccRamsay.jpg"
+import AccRamsay from "../../recursos/AccRamsay.png"
 import AccDragones from "../../recursos/AccDragones.jpg"
 
 
@@ -155,8 +155,8 @@ const lasEscenasDeEstaRuta = [
  <VirtualTour 
         destinationName="Gastronomía B"
         originName="Acceso Ramsay"
-        miniMapImageUrl="../../recursos/miniplano1.jpg"
-        mapImageUrl="../../recursos/plano1.jpg" // Cambia por tu SVG/PNG del plano
+        miniMapImageUrl="../../recursos/miniplano1.png"
+        mapImageUrl="../../recursos/plano1.png" // Cambia por tu SVG/PNG del plano
         scenes={lasEscenasDeEstaRuta}
         destinationChangeRoute=""
         originChangeRoute=""

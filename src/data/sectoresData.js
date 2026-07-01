@@ -13,7 +13,7 @@ export const sectoresData = {
   
   "entrada1": {
     titulo: "Entrada 360",
-    imagen: "../../recursos/entrada1.jpg",
+    imagen: "../../recursos/entrada1.png",
     botonUrl:"/tour360",
     normas: [
       "Uso prioritario para personas con discapacidad.",
