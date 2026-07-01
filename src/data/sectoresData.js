@@ -1,3 +1,6 @@
+import entrada1 from "../../recursos/entrada1.png"
+
+
 export const sectoresData = {
   banos: {
     titulo: "Baño Común (Sanitarios ",
@@ -13,7 +16,7 @@ export const sectoresData = {
   
   "entrada1": {
     titulo: "Entrada 360",
-    imagen: "../../recursos/entrada1.png",
+    imagen: {entrada1},
     botonUrl:"/tour360",
     normas: [
       "Uso prioritario para personas con discapacidad.",

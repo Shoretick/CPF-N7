@@ -15,6 +15,8 @@ import ico2S4 from "../../recursos/cocineroIcon.png"
 
 import AccRamsay from "../../recursos/AccRamsay.png"
 import AccDragones from "../../recursos/AccDragones.jpg"
+import miniplano1 from "../../recursos/miniplano1.png"
+import plano1 from "../../recursos/plano1.png"
 
 
 
@@ -155,8 +157,8 @@ const lasEscenasDeEstaRuta = [
  <VirtualTour 
         destinationName="Gastronomía B"
         originName="Acceso Ramsay"
-        miniMapImageUrl="../../recursos/miniplano1.png"
-        mapImageUrl="../../recursos/plano1.png" // Cambia por tu SVG/PNG del plano
+        miniMapImageUrl={miniplano1}
+        mapImageUrl={plano1} // Cambia por tu SVG/PNG del plano
         scenes={lasEscenasDeEstaRuta}
         destinationChangeRoute=""
         originChangeRoute=""
