@@ -1,4 +1,4 @@
-import entrada1 from "../../recursos/entrada1.jpg"
+
 
 
 export const sectoresData = {
@@ -16,7 +16,7 @@ export const sectoresData = {
   
   "entrada1": {
     titulo: "Entrada 360",
-    imagen: {entrada1},
+    imagen: "https://puntoclick.com.ar/storage/google-places/65e8e879e894b.jpg",
     botonUrl:"/tour360",
     normas: [
       "Uso prioritario para personas con discapacidad.",
