@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// 1. Quitamos @react-oauth/google e importamos lo de tu firebase.js
 import { auth, googleProvider, signInWithPopup } from '../firebase' 
 import styles from './AuthPage.module.css'
-import logo from "../../recursos/logo.png"
+import AccessibilityButton from '../components/AccessibilityButton'
+import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 
 const ADMIN_USER = 'admin'
 const ADMIN_PASSWORD = 'admin'
@@ -16,21 +16,11 @@ export default function AuthPage() {
 
   const goToHome = () => navigate('/inicio')
 
-  // 2. Nueva función usando Firebase
   const handleGoogleLogin = async () => {
     setError('')
     try {
-      // Abre el cartelito de Google manejado por Firebase
       const result = await signInWithPopup(auth, googleProvider)
-      const user = result.user
-
-      console.log('Usuario logueado con éxito:', user.email)
-      
-      // [OPCIONAL] Si ya activaste Firestore en Firebase para tu panel de Admin,
-      // aquí podrías guardar al usuario en la base de datos:
-      // await setDoc(doc(db, "usuarios", user.uid), { nombre: user.displayName, correo: user.email, fecha: new Date() });
-
-      // Redirigir al inicio
+      console.log('Usuario logueado con éxito:', result.user.email)
       goToHome()
     } catch (err) {
       console.error('Error al iniciar sesión con Google:', err)
@@ -38,7 +28,7 @@ export default function AuthPage() {
     }
   }
 
-  const handleCredentialsSubmit = (event: React.FormEvent) => {
+  const handleCredentialsSubmit = (event) => {
     event.preventDefault()
     setError('')
 
@@ -46,66 +36,95 @@ export default function AuthPage() {
       goToHome()
       return
     }
-
     setError('Usuario o contraseña incorrectos')
   }
 
   return (
-    <div className={styles.page}>
-      <div className={styles.card}>
-        <div aria-label="Logo del CFP N.° 7">
-          <span className={styles.logoPlaceholder}><img src={logo} alt="Logo CFP"></img></span>
+    <div className={styles.page}> 
+      <InteractiveMapNavbar />
+      <div className={styles.mobileFab}>
+        <AccessibilityButton variant="floating" />
+      </div>
+
+      
+    <div className={styles.pageContainer}>
+      
+      
+
+      
+      {/* SECCIÓN 1: USUARIOS / GOOGLE */}
+      <div className={styles.sectionBlock}>
+        <div className={styles.googleHeader}>
+          <h1 className={styles.title}>Iniciá sesión</h1>
+          <p className={styles.subtitle}>
+            para guardar tu configuración personalizada y recorridos favoritos
+          </p>
         </div>
 
-        <h1 className={styles.title}>CFP N.° 7</h1>
-        <p className={styles.subtitle}>Navegación Asistida y Accesibilidad</p>
-
-        <form className={styles.credentialsForm} onSubmit={handleCredentialsSubmit}>
-          <label className={styles.field}>
-            <span className={styles.fieldLabel}>Usuario</span>
-            <input
-              className={styles.input}
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              autoComplete="username"
-              placeholder="Ingresá tu usuario"
-            />
-          </label>
-
-          <label className={styles.field}>
-            <span className={styles.fieldLabel}>Contraseña</span>
-            <input
-              className={styles.input}
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              placeholder="Ingresá tu contraseña"
-            />
-          </label>
-
-          {error && <p className={styles.error}>{error}</p>}
-
-          <button type="submit" className={styles.credentialsButton}>
-            Iniciar sesión
-          </button>
-        </form>
-
-        <div className={styles.divider}>
-          <span>o</span>
-        </div>
-
-        {/* 3. Conectamos la nueva función al onClick */}
         <button
           type="button"
           className={styles.googleButton}
           onClick={handleGoogleLogin}
         >
           <GoogleIcon />
-          Iniciar sesión con Google
+          Continuar con Google
+        </button>
+        
+        {error && !username && <p className={styles.error}>{error}</p>}
+      </div>
+
+      {/* SECCIÓN 2: ADMINISTRADORES */}
+      <div className={`${styles.sectionBlock} ${styles.adminBlock}`}>
+        <h2 className={styles.title}>Acceso para administradores</h2>
+        <p className={styles.adminSubtitle}>
+          Ingresá para gestionar la información del sistema
+        </p>
+
+        <form className={styles.credentialsForm} onSubmit={handleCredentialsSubmit}>
+          <div className={styles.field}>
+            <span className={styles.fieldLabel}>Usuario o email</span>
+            <div className={styles.inputContainer}>
+              <span className={styles.inputIcon}>👤</span>
+              <input
+                className={styles.input}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+                placeholder="Ingresá tu usuario o email"
+              />
+            </div>
+          </div >
+        
+
+          <div >
+            <span className={styles.fieldLabel}>Contraseña</span>
+            <div className={styles.inputContainer}>
+              <span className={styles.inputIcon}>🔒</span>
+              <input
+                className={styles.input}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                placeholder="Ingresá tu contraseña"
+              />
+            </div>
+          </div>
+
+          {error && username && <p className={styles.error}>{error}</p>}
+
+          <button type="submit" className={styles.credentialsButton} >
+            Acceder como administrador
+          </button>
+          
+        </form>
+
+        <button type="button" className={styles.forgotPassword}>
+          ¿Olvidaste tu contraseña?
         </button>
       </div>
+    </div>
     </div>
   )
 }
