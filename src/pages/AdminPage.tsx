@@ -1,5 +1,5 @@
 import Navbar from '../components/InteractiveMapNavbar' 
-import styles from './Adminpage.module.css'
+import styles from './AdminPage.module.css'
 
 export default function AdminPage () {
   return (
