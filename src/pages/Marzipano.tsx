@@ -1,5 +1,5 @@
-import Navbar from '../../components/Navbar'
-import LocationSectionDyR from '../../components/LocationSectionDyR' 
+import Navbar from '../components/Navbar'
+import LocationSectionDyR from '../components/LocationSectionDyR' 
 import styles from './Marzipano.module.css'
 
 export default function Marzipano () {

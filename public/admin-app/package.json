@@ -1,0 +1,20 @@
+{
+  "name": "cfp7-navigation-app",
+  "version": "1.0.0",
+  "description": "Aplicación web responsiva de mapa interactivo, navegación asistida y reporte colaborativo de accesibilidad para el CFP N.º 7.",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "start": "npx -y http-server -p 8080",
+    "dev": "npx -y http-server -p 8080"
+  },
+  "keywords": [
+    "accessibility",
+    "navigation",
+    "interactive-map",
+    "dijkstra",
+    "cfp7"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mapa interactivo y sistema de navegación accesible del Centro de Formación Profesional N.º 7. Encuentra aulas, oficinas, rampas y reporta incidencias de accesibilidad de forma colaborativa.">
+    <meta name="theme-color" content="#1e3a8a">
+    <title>CFP N.º 7 - Mapa Interactivo y Navegación Accesible</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Principales -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Skip Link para Accesibilidad por Teclado -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- Región para Anuncios Dinámicos de Lectores de Pantalla -->
+    <div id="aria-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- 1. PANTALLA DE INICIO / LOGIN -->
+    <div id="view-login" class="app-view login-view-wrapper">
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="login-logo-icon">
+                    <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1>CFP N.º 7</h1>
+                <p>Navegación Asistida y Accesibilidad</p>
+            </div>
+            <div class="login-buttons-container">
+                <button type="button" id="btn-login-visitor" class="btn-login-option btn-visitor">
+                    <span>👤 Continuar como visitante</span>
+                </button>
+                <button type="button" id="btn-login-google" class="btn-login-option btn-google">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="margin-right: 8px; vertical-align: middle; display: inline-block;">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
+                    </svg>
+                    <span>Iniciar sesión con Google</span>
+                </button>
+                <button type="button" id="btn-login-admin-toggle" class="btn-login-option btn-admin">
+                    <span>🔑 Ingresar como administrador</span>
+                </button>
+            </div>
+
+            <!-- Formulario de login administrativo oculto -->
+            <form id="admin-login-form" class="admin-login-form-wrapper">
+                <div class="input-group">
+                    <label for="admin-user">Usuario:</label>
+                    <input type="text" id="admin-user" placeholder="Ingrese usuario..." autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="admin-pass">Contraseña:</label>
+                    <input type="password" id="admin-pass" placeholder="Ingrese contraseña...">
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Entrar al Panel</button>
+                <div id="admin-login-error" class="admin-error-msg hidden">Credenciales inválidas. Intente nuevamente.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. SELECCIÓN DE ACCESO -->
+    <div id="view-access" class="app-view access-view-wrapper hidden">
+        <!-- Panel de Simulación de Tiempo -->
+        <div class="time-simulation-panel">
+            <span>⏰ Simulador de Hora:</span>
+            <div class="time-slider-container">
+                <input type="range" id="time-simulation-slider" class="time-slider" min="0" max="1439" value="600">
+                <div id="simulated-time-display" class="simulated-time-display">10:00 hs</div>
+            </div>
+        </div>
+
+        <div class="access-header">
+            <h2>Selección de Acceso</h2>
+            <p>Indique desde qué entrada ingresará al CFP N.º 7 para optimizar su recorrido y accesibilidad.</p>
+        </div>
+
+        <div class="access-cards-grid">
+            <!-- Ramsay -->
+            <div id="access-card-ramsay" class="access-card" data-access="ramsay">
+                <div class="access-card-title-row">
+                    <h3>Acceso Ramsay</h3>
+                    <div class="access-indicator-badge">
+                        <span class="access-indicator-dot"></span>
+                        <span class="access-status-text">Disponible</span>
+                    </div>
+                </div>
+                <p class="access-card-details">Entrada accesible recomendada para talleres gastronómicos y sectores del ala oeste. Cuenta con rampa adaptada y rampas secundarias.</p>
+                <span class="access-card-schedule">Horario: 08:00 a 22:00 hs</span>
+            </div>
+
+            <!-- Dragones -->
+            <div id="access-card-dragones" class="access-card" data-access="dragones">
+                <div class="access-card-title-row">
+                    <h3>Acceso Dragones</h3>
+                    <div class="access-indicator-badge">
+                        <span class="access-indicator-dot"></span>
+                        <span class="access-status-text">Disponible</span>
+                    </div>
+                </div>
+                <p class="access-card-details">Acceso principal del edificio. Adecuado para ingresar a aulas teóricas y sector informático. Rampas suaves y puertas automatizadas de doble ancho.</p>
+                <span class="access-card-schedule">Horario: 08:00 a 18:00 hs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. SELECCIÓN DE DESTINO -->
+    <div id="view-destination" class="app-view destination-view-wrapper hidden">
+        <div class="destination-header">
+            <button id="btn-destination-back" class="btn-back-to-access">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver a Acceso</span>
+            </button>
+            <h2>Selección de Destino</h2>
+            <p>Seleccione el área o espacio específico al que se dirige para iniciar su guiado.</p>
+        </div>
+
+        <div class="destination-container-layout">
+            <!-- Cuadrícula de sectores -->
+            <div class="destination-grid">
+                <!-- Sector 1 -->
+                <div class="destination-card" data-sector="Sector S1">
+                    <div class="destination-icon">🛠️</div>
+                    <h3>Sector S1</h3>
+                    <p>Talleres de Oficios</p>
+                </div>
+
+                <!-- Sector 2 -->
+                <div class="destination-card" data-sector="Sector S2">
+                    <div class="destination-icon">🍳</div>
+                    <h3>Sector S2</h3>
+                    <p>Cocinas y Gastronomía</p>
+                </div>
+
+                <!-- Sector 3 -->
+                <div class="destination-card" data-sector="Sector S3">
+                    <div class="destination-icon">💼</div>
+                    <h3>Sector S3</h3>
+                    <p>Administración y Teoría</p>
+                </div>
+
+                <!-- Sector 4 -->
+                <div class="destination-card" data-sector="Sector S4">
+                    <div class="destination-icon">🌳</div>
+                    <h3>Sector S4</h3>
+                    <p>Buffet y Patio Exterior</p>
+                </div>
+
+                <!-- Baños -->
+                <div class="destination-card" data-category="toilet">
+                    <div class="destination-icon">🚻</div>
+                    <h3>Sanitarios</h3>
+                    <p>Baños Convencionales</p>
+                </div>
+
+                <!-- Baños Accesibles -->
+                <div class="destination-card" data-category="toilet-accessible">
+                    <div class="destination-icon">♿</div>
+                    <h3>Sanitarios Adaptados</h3>
+                    <p>Baños de Accesibilidad Completa</p>
+                </div>
+
+                <!-- Primeros auxilios -->
+                <div class="destination-card" data-category="first-aid">
+                    <div class="destination-icon">🚑</div>
+                    <h3>Primeros Auxilios</h3>
+                    <p>Soporte Médico y Camillas</p>
+                </div>
+
+                <!-- Salidas -->
+                <div class="destination-card" data-category="exit">
+                    <div class="destination-icon">🚪</div>
+                    <h3>Salidas de Emergencia</h3>
+                    <p>Rutas de Evacuación Seguras</p>
+                </div>
+
+                <!-- Contenedor dinámico inyectado por JS para listar espacios del sector seleccionado -->
+                <div id="spaces-list-panel" class="spaces-dropdown-panel hidden">
+                    <h4 id="spaces-panel-title">Espacios en el Sector</h4>
+                    <div id="spaces-list-container" class="spaces-list-layout">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISTA DE HISTORIA SOCIAL SEPARADA -->
+    <div id="view-social-story" class="app-view social-story-view-wrapper hidden">
+        <div class="destination-header">
+            <button id="btn-social-story-back" class="btn-back-to-access">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Volver a Selección de Destino</span>
+            </button>
+            <h2 id="social-history-view-main-title">Historia Social y Normas</h2>
+            <p>Por favor lea las pautas de accesibilidad y anticipación para este espacio antes de iniciar el guiado.</p>
+        </div>
+
+        <div class="social-story-fullscreen-container">
+            <div id="social-history-card" class="social-history-card-fullscreen hidden">
+                <div class="social-history-card-header-fullscreen">
+                    <h3 id="social-history-title">Cocina Industrial</h3>
+                    <p id="social-history-subtitle">Normas de Anticipación / Accesibilidad Cognitiva</p>
+                </div>
+                
+                <div class="social-story-grid-layout">
+                    <div class="social-history-visual-fullscreen">
+                        <img id="social-history-photo" src="assets/images/aula_gastronomia.png" alt="Fotografía del espacio" class="social-history-img-fullscreen">
+                        <div class="social-history-overlay-fullscreen">Referencia Física Real</div>
+                    </div>
+                    
+                    <div class="social-history-content-fullscreen">
+                        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 12px;">Antes de ingresar debe:</h4>
+                        <ul id="social-history-rules-list" class="social-history-list-fullscreen">
+                            <!-- Se llena dinámicamente -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="social-history-actions-fullscreen mt-4" style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <button id="btn-social-history-go" class="btn btn-primary w-full" style="padding: 14px 28px; font-size: 1.05rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0, 79, 105, 0.25);">
+                        🗺️ Ver recorrido en Mapa / View Route
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor Principal de la App -->
+    <div id="view-app" class="app-container app-view hidden">
+        
+        <!-- Header Superior -->
+        <header class="app-header">
+            <div class="header-logo">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>CFP N.º 7</h1>
+                    <p class="subtitle">Orientación y Accesibilidad</p>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <!-- Simulador de Escaneo QR -->
+                <button id="qr-simulate-btn" class="btn btn-secondary flex-center" aria-label="Simular escaneo de código QR en el edificio">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <path d="M14 14h3v3h-3zm3 3h4v4h-4zm0-3h4v3h-4zm-3 3h3v4h-3z" stroke-linecap="round" />
+                    </svg>
+                    <span>Escanear QR de ubicación</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenido Principal Dividido en Sidebar y Mapa -->
+        <main id="main-content" class="app-body">
+            
+            <!-- SIDEBAR IZQUIERDO -->
+            <section class="sidebar" aria-label="Panel de control y búsqueda">
+                <!-- Buscador de Espacios -->
+                <div class="search-section">
+                    <div class="search-box">
+                        <label for="search-input" class="sr-only">Buscar aulas, oficinas o servicios...</label>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="search-icon" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="search-input" placeholder="Buscar aula, oficina, baño..." autocomplete="off">
+                        <button id="clear-search-btn" class="clear-btn hidden" aria-label="Limpiar búsqueda">&times;</button>
+                    </div>
+                    <!-- Resultados de búsqueda -->
+                    <div id="search-results" class="search-results-list hidden" role="listbox" aria-label="Resultados de búsqueda"></div>
+                </div>
+
+                <!-- Tabs de Navegación Lateral -->
+                <nav class="sidebar-tabs" aria-label="Pestañas del panel">
+                    <button class="tab-btn active" data-tab="tab-navigate" aria-selected="true" role="tab">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 20l-5.447-2.724A2 2 0 012.5 15.5V6.382a2 2 0 011.053-1.789L9 2l6 3 5.447-2.724A2 2 0 0121.5 4.5v9.118a2 2 0 01-1.053 1.789L15 20l-6-3zM9 2v15m6-15v15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Recorrido</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-reports" aria-selected="false" role="tab">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Incidencias</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-info" aria-selected="false" role="tab">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span>Información</span>
+                    </button>
+                </nav>
+
+                <!-- CONTENIDO DE LAS TABS -->
+                <div class="tab-content-container">
+                    
+                    <!-- TAB 1: NAVEGACIÓN Y RUTA -->
+                    <div id="tab-navigate" class="tab-panel active" role="tabpanel">
+                        <!-- Panel de Google User (Oculto por defecto) -->
+                        <div id="google-profile-card" class="card google-profile-card hidden">
+                            <div class="google-profile-header">
+                                <div class="google-avatar-svg-container">
+                                    <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor" style="color: var(--primary);">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                    </svg>
+                                </div>
+                                <div class="google-user-info">
+                                    <h4 id="google-user-name">Usuario Google</h4>
+                                    <span class="badge badge-accent">Cuenta Conectada</span>
+                                </div>
+                            </div>
+                            <div class="google-features-list">
+                                <div class="google-favorites-section">
+                                    <h5>⭐ Favoritos Guardados:</h5>
+                                    <div id="google-favorites-container" class="google-items-container">
+                                        <p class="text-xs text-muted">No tienes favoritos guardados.</p>
+                                    </div>
+                                </div>
+                                <div class="google-history-section">
+                                    <h5>📜 Historial Reciente:</h5>
+                                    <div id="google-history-container" class="google-items-container">
+                                        <p class="text-xs text-muted">No hay navegación previa.</p>
+                                    </div>
+                                </div>
+                                <div class="google-alerts-section">
+                                    <h5>🔔 Alertas de Barreras:</h5>
+                                    <div id="google-alerts-container" class="google-items-container">
+                                        <p class="text-xs text-muted">Cargando incidencias...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel de Selección de Ruta -->
+                        <div class="route-planner-card card">
+                            <h3>Planificar Recorrido</h3>
+                            
+                            <div class="route-inputs">
+                                <div class="input-group">
+                                    <label for="route-start">Origen:</label>
+                                    <div class="select-wrapper">
+                                        <select id="route-start">
+                                            <option value="">Seleccionar punto de inicio...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="swap-locations-wrapper">
+                                    <button id="swap-locations-btn" class="btn-icon" aria-label="Intercambiar origen y destino">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6-4v12m0 0l4-4m-4 4l-4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    </button>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="route-end">Destino:</label>
+                                    <div class="select-wrapper">
+                                        <select id="route-end">
+                                            <option value="">Seleccionar destino...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Opciones de Accesibilidad de la Ruta -->
+                            <div class="route-options">
+                                <span class="options-label">Preferencia de Ruta:</span>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="route-pref" value="standard" checked>
+                                        <span class="custom-radio"></span>
+                                        <span>Estándar (Rápida)</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="route-pref" value="accessible">
+                                        <span class="custom-radio text-accent-color"></span>
+                                        <span class="accessible-pref-text">Accesible (Evita escaleras)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="route-actions">
+                                <button id="calculate-route-btn" class="btn btn-primary w-full">Calcular Ruta</button>
+                                <button id="clear-route-btn" class="btn btn-text w-full hidden">Borrar Ruta</button>
+                            </div>
+                        </div>
+
+                        <!-- Ficha de Información de Espacio Seleccionado / Guía de Ruta -->
+                        <div id="navigation-details-container">
+                            <!-- Estado por defecto -->
+                            <div id="nav-empty-state" class="empty-state text-center">
+                                <div class="empty-icon">📍</div>
+                                <p>Seleccione un aula en el mapa o configure un recorrido para comenzar.</p>
+                            </div>
+
+                            <!-- Ficha de un Espacio Seleccionado -->
+                            <div id="space-info-card" class="card hidden">
+                                <div class="card-header-with-badge">
+                                    <span id="space-floor-badge" class="badge">Planta Baja</span>
+                                    <button id="close-space-card" class="close-card-btn" aria-label="Cerrar detalles">&times;</button>
+                                </div>
+                                <h3 style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                                    <span id="space-title">Aula de Informática 1</span>
+                                    <button id="btn-favorite-toggle" class="favorite-star-btn" aria-label="Guardar en favoritos">★</button>
+                                </h3>
+                                <p id="space-subtitle" class="text-muted">Sector A - Planta Baja</p>
+                                
+                                <div class="space-visual-reference">
+                                    <img id="space-photo" src="" alt="Fotografía del aula" class="space-img">
+                                    <div class="visual-reference-overlay">Referencia Visual Real</div>
+                                </div>
+
+                                <div class="space-details-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Accesibilidad:</span>
+                                        <span id="space-acc-status" class="detail-val">Accesible</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Baño más cercano:</span>
+                                        <span id="space-nearest-toilet" class="detail-val">-</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-description-section">
+                                    <h4>Descripción y Uso:</h4>
+                                    <p id="space-description">-</p>
+                                </div>
+
+                                <div class="space-actions-row">
+                                    <button id="set-as-start-btn" class="btn btn-secondary w-half">Fijar Origen</button>
+                                    <button id="set-as-end-btn" class="btn btn-primary w-half">Fijar Destino</button>
+                                </div>
+                            </div>
+
+                            <!-- Vista Previa de la Ruta (Route Preview) -->
+                            <div id="route-preview-card" class="card hidden">
+                                <div class="route-preview-header">
+                                    <h3>Vista Previa del Recorrido</h3>
+                                    <p class="text-sm text-muted">Revise las estimaciones antes de iniciar.</p>
+                                </div>
+                                <div class="route-preview-details">
+                                    <div class="preview-item">
+                                        <span class="preview-label">Distancia Estimada:</span>
+                                        <span id="route-preview-distance" class="preview-val">0 metros</span>
+                                    </div>
+                                    <div class="preview-item">
+                                        <span class="preview-label">Tiempo Estimado:</span>
+                                        <span id="route-preview-time" class="preview-val">0 minutos</span>
+                                    </div>
+                                    <div class="preview-item">
+                                        <span class="preview-label">Preferencia de Accesibilidad:</span>
+                                        <span id="route-preview-type" class="preview-val">-</span>
+                                    </div>
+                                </div>
+                                <div class="route-preview-actions mt-3">
+                                    <button id="btn-start-navigation" class="btn btn-primary w-full">Iniciar Guiado / Start Navigation</button>
+                                </div>
+                            </div>
+
+                            <!-- Panel de Direcciones de la Ruta (Activo) -->
+                            <div id="route-directions-card" class="card hidden">
+                                <div class="route-directions-header">
+                                    <h3 class="flex-center-between">
+                                        <span>Indicaciones de Ruta</span>
+                                        <button id="tts-speak-route-btn" class="btn-icon-circular" aria-label="Leer instrucciones en voz alta">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                                            </svg>
+                                        </button>
+                                    </h3>
+                                    <div class="route-summary-bar">
+                                        <div>
+                                            <span class="summary-label">Distancia:</span>
+                                            <span id="route-summary-distance" class="summary-value">0 metros</span>
+                                        </div>
+                                        <div>
+                                            <span class="summary-label">Tipo:</span>
+                                            <span id="route-summary-type" class="summary-value">Accesible</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Lista de Pasos Escritos -->
+                                <ol id="directions-list" class="directions-steps-list"></ol>
+                            </div>
+
+                            <!-- Pantalla de Llegada (Arrival Screen) -->
+                            <div id="arrival-feedback-card" class="card hidden">
+                                <div class="arrival-card-header text-center py-4">
+                                    <div class="arrival-success-icon-bg" style="font-size: 2.5rem; margin-bottom: 8px;">🏆</div>
+                                    <h3>¡Has llegado a tu destino!</h3>
+                                    <p class="text-sm text-muted">You have arrived at your destination</p>
+                                </div>
+                                <div class="arrival-actions-stack" style="display: flex; flex-direction: column; gap: 8px;">
+                                    <button id="btn-arrival-enter" class="btn btn-primary w-full">Ingresar al Espacio</button>
+                                    <button id="btn-arrival-info" class="btn btn-secondary w-full">Ver Información del Espacio</button>
+                                    <button id="btn-arrival-help" class="btn btn-text w-full text-danger-color" style="color: var(--danger);">¿Necesitas Ayuda?</button>
+                                </div>
+                                <div class="arrival-feedback-survey mt-4 pt-3" style="border-top: 1px solid var(--border-color);">
+                                    <p class="text-center font-bold text-sm mb-2" style="font-weight: 700; font-size: 0.9rem; margin-bottom: 12px; text-align: center;">¿Lograste llegar a tu destino?</p>
+                                    <div class="flex-center gap-3" style="display: flex; gap: 12px; justify-content: center;">
+                                        <button id="btn-survey-yes" class="btn btn-success flex-1" style="flex: 1; background: var(--accent); color: #ffffff;">👍 Sí (Yes)</button>
+                                        <button id="btn-survey-no" class="btn btn-danger flex-1" style="flex: 1; background: var(--danger); color: #ffffff;">👎 No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: REGISTRO DE INCIDENCIAS -->
+                    <div id="tab-reports" class="tab-panel" role="tabpanel">
+                        <div class="card">
+                            <h3>Informar Obstáculo de Accesibilidad</h3>
+                            <p class="text-sm text-muted mb-4">Ayuda a mantener la comunidad informada reportando barreras físicas temporales u permanentes dentro del CFP N.º 7.</p>
+                            
+                            <form id="report-incident-form">
+                                <div class="input-group hidden">
+                                    <label for="report-floor">Piso donde ocurre:</label>
+                                    <div class="select-wrapper">
+                                        <select id="report-floor" required>
+                                            <option value="PB" selected>Planta Baja</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="report-location">Ubicación aproximada:</label>
+                                    <div class="select-wrapper">
+                                        <select id="report-location" required>
+                                            <option value="">Seleccione el espacio más cercano...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="report-category">Tipo de Barrera / Incidencia:</label>
+                                    <div class="select-wrapper">
+                                        <select id="report-category" required>
+                                            <option value="">Seleccione una categoría...</option>
+                                            <option value="Rampa Obstruida">Rampa Obstruida o Bloqueada</option>
+                                            <option value="Ascensor Inoperativo">Ascensor / Elevador Inactivo</option>
+                                            <option value="Baño Inaccesible">Baño Adaptado Fuera de Servicio</option>
+                                            <option value="Piso Resbaladizo">Piso Resbaladizo / Húmedo</option>
+                                            <option value="Señalética Incompleta">Señalética Incompleta o Dañada</option>
+                                            <option value="Otro">Otro (Escribir detalle abajo...)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="report-custom-category-group" class="input-group hidden">
+                                    <label for="report-custom-category">Especifique el tipo de barrera:</label>
+                                    <input type="text" id="report-custom-category" placeholder="Ej. Escalón roto, luz quemada...">
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="report-description">Detalles del problema:</label>
+                                    <textarea id="report-description" rows="3" placeholder="Proporcione indicaciones adicionales sobre el obstáculo..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-danger w-full mt-2">Enviar Reporte Colaborativo</button>
+                            </form>
+                        </div>
+
+                        <!-- Historial de Incidencias Activas -->
+                        <div class="active-reports-section mt-4">
+                            <h3 class="section-title">Incidencias Activas en el Edificio</h3>
+                            <div id="active-reports-list" class="reports-list">
+                                <!-- Se llena dinámicamente -->
+                                <p class="text-center text-muted py-4">No hay incidencias reportadas activas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: INFORMACIÓN GENERAL -->
+                    <div id="tab-info" class="tab-panel" role="tabpanel">
+                        <!-- Panel de Dependencias Compartidas -->
+                        <div class="card">
+                            <h3>Sobre el Complejo Institucional</h3>
+                            <p class="text-sm mb-3">La sede del CFP N.º 7 comparte edificio con otras dependencias del distrito educativo. Este espacio busca unificar la navegación y hacerla plenamente accesible.</p>
+                            
+                            <ul class="complex-dependency-list">
+                                <li>
+                                    <strong>Sector S1 (Oeste):</strong> Talleres de Luthería, Carpintería, Construcción, Herrería/Soldadura, Electricidad y Aula Informática.
+                                </li>
+                                <li>
+                                    <strong>Sector S2 (Este):</strong> Aulas Teóricas, Laboratorio de Programación, Informática Aplicada, Buffet y Sanitarios Adaptados ♿.
+                                </li>
+                                <li>
+                                    <strong>Gastronomía (Ramsay):</strong> Cocinas Industriales y Talleres de Gastronomía Profesional.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Cartelera General y Horarios -->
+                        <div class="card mt-4">
+                            <h3>Horarios de Atención</h3>
+                            <div class="info-table-wrapper">
+                                <table class="info-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Turno</th>
+                                            <th>Días</th>
+                                            <th>Horario</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mañana</td>
+                                            <td>Lunes a Viernes</td>
+                                            <td>08:00 - 12:00 hs</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tarde</td>
+                                            <td>Lunes a Viernes</td>
+                                            <td>13:30 - 17:30 hs</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Noche</td>
+                                            <td>Lunes a Viernes</td>
+                                            <td>18:30 - 22:30 hs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Emergencias y Contactos -->
+                        <div class="card mt-4 contact-card">
+                            <h3>Contacto y Seguridad</h3>
+                            <p><strong>Bedelía / Guardia:</strong> Interno 102 (Planta Baja)</p>
+                            <p><strong>Coordinación Accesible:</strong> cfp7_accesible@instituto.edu.ar</p>
+                            <div class="alert-info-box mt-2">
+                                <p class="text-xs">En caso de emergencias o evacuación, siga las luces verdes intermitentes. Todas las rutas de emergencia son aptas para sillas de ruedas (Planta Baja).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CONTENEDOR CENTRAL: MAPA INTERACTIVO Y CONTROLES -->
+            <section class="map-view-section" aria-label="Visualizador del mapa interactivo">
+                
+                <!-- Barra superior de control de mapa (Selector de piso y leyendas) -->
+                <div class="map-control-bar">
+                    <!-- Selector de Piso -->
+                    <div class="floor-selector-container">
+                        <span class="floor-btn-static">Planta Baja - Plano General</span>
+                        <button id="floor-pb-btn" class="hidden" aria-pressed="true"></button>
+                        <button id="floor-1p-btn" class="hidden" aria-pressed="false"></button>
+                    </div>
+
+                    <!-- Leyendas Rápidas -->
+                    <div class="map-legend">
+                        <span class="legend-item"><span class="legend-dot toilet-dot"></span> Baños</span>
+                        <span class="legend-item"><span class="legend-dot acc-toilet-dot"></span> Baño Adaptado</span>
+                        <span class="legend-item"><span class="legend-dot ramp-dot"></span> Rampa</span>
+                        <span class="legend-item"><span class="legend-dot stairs-dot"></span> Escaleras</span>
+                    </div>
+                </div>
+
+                <!-- Modo responsivo orientación móvil banner -->
+                <div class="mobile-orientation-banner">
+                    <span>📱 Gire horizontal para ver el mapa, u vertical para visor 360</span>
+                </div>
+                
+                <!-- Visores Split-Screen (Escritorio dividida, Móvil dinámico) -->
+                <div class="split-viewport-container">
+                    
+                    <!-- Lado 1: Mapa SVG -->
+                    <div id="map-split-pane" class="split-pane">
+                        <div class="split-pane-header">
+                            <h4>🗺️ Plano del Establecimiento</h4>
+                        </div>
+                        <div class="map-viewport-wrapper">
+                            <!-- Contenedor del Mapa SVG con Zoom y Paneo -->
+                            <div id="map-interactive-container" class="map-interactive-container">
+                                <!-- El SVG se inyecta o dibuja dinámicamente mediante JS -->
+                                <div id="svg-map-holder" class="svg-map-holder"></div>
+                            </div>
+
+                            <!-- Botones Flotantes de Zoom -->
+                            <div class="map-zoom-controls">
+                                <button id="zoom-in-btn" class="zoom-btn" aria-label="Acercar mapa">+</button>
+                                <button id="zoom-out-btn" class="zoom-btn" aria-label="Alejar mapa">-</button>
+                                <button id="zoom-reset-btn" class="zoom-btn" aria-label="Restablecer vista">⟲</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lado 2: Visor Marzipano -->
+                    <div id="marzipano-split-pane" class="split-pane">
+                        <div class="split-pane-header">
+                            <h4>👁️ Visor 360° Real Asistido (Marzipano)</h4>
+                        </div>
+                        <div class="marzipano-viewport-wrapper">
+                            <div id="marzipano-pano-container"></div>
+                            <div id="marzipano-overlay" class="marzipano-overlay-info hidden">
+                                <h5 id="marzipano-overlay-title">-</h5>
+                                <p id="marzipano-overlay-desc">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicador de Carga / Advertencia Superior de Accesibilidad -->
+                <div id="map-incident-banner" class="map-banner hidden">
+                    <span class="banner-icon">⚠️</span>
+                    <span id="map-incident-banner-text">Incidencia activa reportada en esta planta. Revise las alertas en el mapa.</span>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- PANEL FLOTANTE DE ACCESIBILIDAD -->
+        <div class="accessibility-widget-wrapper">
+            <button id="acc-panel-toggle" class="accessibility-fab" aria-label="Abrir opciones de accesibilidad visual y auditiva" aria-expanded="false">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 8v8M8 12h8" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Panel de Opciones de Accesibilidad -->
+            <div id="accessibility-options-panel" class="accessibility-panel hidden" role="region" aria-label="Opciones de accesibilidad">
+                <div class="panel-header">
+                    <h4>Ajustes de Accesibilidad</h4>
+                    <button id="close-acc-panel-btn" class="close-btn" aria-label="Cerrar panel de accesibilidad">&times;</button>
+                </div>
+                
+                <div class="panel-body">
+                    <!-- Tamaño de Letra -->
+                    <div class="setting-group">
+                        <span class="setting-label">Tamaño del Texto:</span>
+                        <div class="text-size-controls">
+                            <button id="text-size-dec" class="btn btn-sm" aria-label="Disminuir tamaño de letra">A-</button>
+                            <span id="text-size-indicator" class="size-indicator">Mediano</span>
+                            <button id="text-size-inc" class="btn btn-sm" aria-label="Aumentar tamaño de letra">A+</button>
+                        </div>
+                    </div>
+
+                    <!-- Modo de Contraste -->
+                    <div class="setting-group">
+                        <span class="setting-label">Contraste de Pantalla:</span>
+                        <div class="contrast-options">
+                            <button id="contrast-normal-btn" class="theme-btn active" aria-label="Contraste normal" data-theme="normal">Abc</button>
+                            <button id="contrast-dark-btn" class="theme-btn contrast-dark" aria-label="Alto contraste oscuro" data-theme="dark">Abc</button>
+                            <button id="contrast-light-btn" class="theme-btn contrast-light" aria-label="Alto contraste claro" data-theme="light">Abc</button>
+                        </div>
+                    </div>
+
+                    <!-- Tipografía Especial (Dyslexic) -->
+                    <div class="setting-group">
+                        <span class="setting-label">Fuentes de Lectura:</span>
+                        <label class="switch-container">
+                            <input type="checkbox" id="dyslexic-font-checkbox">
+                            <span class="switch-slider"></span>
+                            <span class="switch-label-text">Tipografía OpenDyslexic</span>
+                        </label>
+                    </div>
+
+                    <!-- Lector / Guiado por voz -->
+                    <div class="setting-group">
+                        <span class="setting-label">Asistente por Voz:</span>
+                        <label class="switch-container">
+                            <input type="checkbox" id="voice-assistant-checkbox">
+                            <span class="switch-slider"></span>
+                            <span class="switch-label-text">Activar Guiado por Voz</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE SIMULADOR DE CÓDIGO QR -->
+        <div id="qr-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content card">
+                <button id="close-qr-modal-btn" class="close-modal-btn" aria-label="Cerrar modal de simulación QR">&times;</button>
+                
+                <div class="modal-body text-center">
+                    <div class="qr-code-placeholder-frame">
+                        <svg viewBox="0 0 100 100" width="120" height="120" class="qr-svg-icon" aria-hidden="true">
+                            <path d="M10 10h30v30H10zm5 5h20v20H15zm45-5h30v30H60zm5 5h20v20H65zM10 60h30v30H10zm5 5h20v20H15zm73-5H75v8h8zm0 15h-8v8h8zm-15-5h-8v8h8zm5-10h-5v5h5zm0 10h-5v5h5z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    
+                    <h3 id="qr-modal-title">Simulador de Códigos QR Contextuales</h3>
+                    <p class="text-sm text-muted mb-4">En el edificio físico del CFP N.º 7, encontrará códigos QR pegados en paredes y accesos estratégicos. Escanear uno de ellos con su teléfono móvil le sitúa de inmediato en ese punto físico dentro de esta aplicación.</p>
+                    
+                    <div class="input-group text-left">
+                        <label for="qr-select-location">Seleccione qué código QR de pared está escaneando:</label>
+                        <div class="select-wrapper">
+                            <select id="qr-select-location">
+                                <option value="">Elija una ubicación de escaneo simulada...</option>
+                                <!-- Se llena dinámicamente -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="simulate-scan-action-btn" class="btn btn-primary w-full mt-4">Simular Escaneo y Ubicarme</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÓN DE ACCESO DIRECTO RÁPIDO PARA REPORTAR INCIDENCIAS DESDE CUALQUIER PESTAÑA -->
+        <div class="report-fab-container">
+            <button id="btn-floating-report" class="report-fab">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <span>Reportar Barrera</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 5. PANEL ADMINISTRATIVO COMPLETO -->
+    <div id="view-admin" class="app-view admin-view-wrapper hidden">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-top">
+                <div class="admin-sidebar-header">
+                    <div class="admin-sidebar-header-icon">⚙️</div>
+                    <div>
+                        <h3>Panel Gestión</h3>
+                        <span style="font-size: 0.7rem; color: #94a3b8; font-weight: 700; letter-spacing: 0.5px;">CFP N.º 7</span>
+                    </div>
+                </div>
+                <nav class="admin-sidebar-nav">
+                    <button class="admin-nav-item active" data-target="admin-panel-dashboard">📊 Dashboard</button>
+                    <button class="admin-nav-item" data-target="admin-panel-users">👥 Usuarios</button>
+                    <button class="admin-nav-item" data-target="admin-panel-courses">📚 Cursos</button>
+                    <button class="admin-nav-item" data-target="admin-panel-barriers">⚠️ Barreras</button>
+                </nav>
+            </div>
+            <div class="admin-sidebar-footer">
+                <button id="btn-admin-logout" class="btn btn-login-option btn-admin-logout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <div class="admin-main-container">
+            <header class="admin-main-header">
+                <h2 id="admin-panel-title-display">Dashboard Administrativo</h2>
+                <button id="btn-admin-back-app" class="btn btn-secondary">Volver a la App 🖥️</button>
+            </header>
+
+            <main class="admin-main-content-area">
+                <!-- PANEL: DASHBOARD -->
+                <div id="admin-panel-dashboard" class="admin-tab-panel active">
+                    <div class="admin-metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-info">
+                                <h5>Usuarios Totales</h5>
+                                <div id="metric-users-count" class="metric-number">5</div>
+                            </div>
+                            <div class="metric-icon">👥</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-info">
+                                <h5>Cursos Activos</h5>
+                                <div id="metric-courses-count" class="metric-number">4</div>
+                            </div>
+                            <div class="metric-icon">📚</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-info">
+                                <h5>Barreras Reportadas</h5>
+                                <div id="metric-barriers-count" class="metric-number">2</div>
+                            </div>
+                            <div class="metric-icon">⚠️</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-info">
+                                <h5>Métricas Eventos</h5>
+                                <div id="metric-events-count" class="metric-number">0</div>
+                            </div>
+                            <div class="metric-icon">📈</div>
+                        </div>
+                    </div>
+
+                    <div class="admin-dashboard-row">
+                        <div class="admin-card-large">
+                            <h4>Bitácora de Eventos de Visitantes (Métricas de Orientación)</h4>
+                            <div id="admin-events-list" class="admin-activity-list">
+                                <p class="text-center text-muted py-4">No hay eventos registrados aún. Navegue como visitante para generar métricas.</p>
+                            </div>
+                        </div>
+                        <div class="admin-card-large">
+                            <h4>Estadísticas del Edificio por Sector</h4>
+                            <div class="admin-charts-container" style="display: flex; flex-direction: column; gap: 14px; padding: 10px;">
+                                <!-- Sector 1 Courses and Barriers -->
+                                <div class="chart-item">
+                                    <div class="flex-center-between text-xs" style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">
+                                        <span>Sector 1: Workshops</span>
+                                        <span id="chart-sector1-label">0 cursos | 0 barreras</span>
+                                    </div>
+                                    <div class="chart-bar-bg" style="background: var(--bg-app); border-radius: 4px; height: 10px; overflow: hidden; display: flex;">
+                                        <div id="chart-sector1-courses" style="background: var(--primary); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                        <div id="chart-sector1-barriers" style="background: var(--danger); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                    </div>
+                                </div>
+                                <!-- Sector 2 Courses and Barriers -->
+                                <div class="chart-item">
+                                    <div class="flex-center-between text-xs" style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">
+                                        <span>Sector 2: Kitchen & Pastry</span>
+                                        <span id="chart-sector2-label">0 cursos | 0 barreras</span>
+                                    </div>
+                                    <div class="chart-bar-bg" style="background: var(--bg-app); border-radius: 4px; height: 10px; overflow: hidden; display: flex;">
+                                        <div id="chart-sector2-courses" style="background: var(--primary); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                        <div id="chart-sector2-barriers" style="background: var(--danger); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                    </div>
+                                </div>
+                                <!-- Sector 3 Courses and Barriers -->
+                                <div class="chart-item">
+                                    <div class="flex-center-between text-xs" style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">
+                                        <span>Sector 3: Administration & Lab</span>
+                                        <span id="chart-sector3-label">0 cursos | 0 barreras</span>
+                                    </div>
+                                    <div class="chart-bar-bg" style="background: var(--bg-app); border-radius: 4px; height: 10px; overflow: hidden; display: flex;">
+                                        <div id="chart-sector3-courses" style="background: var(--primary); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                        <div id="chart-sector3-barriers" style="background: var(--danger); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                    </div>
+                                </div>
+                                <!-- Sector 4 Courses and Barriers -->
+                                <div class="chart-item">
+                                    <div class="flex-center-between text-xs" style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">
+                                        <span>Sector 4: Patio & Cafeteria</span>
+                                        <span id="chart-sector4-label">0 cursos | 0 barreras</span>
+                                    </div>
+                                    <div class="chart-bar-bg" style="background: var(--bg-app); border-radius: 4px; height: 10px; overflow: hidden; display: flex;">
+                                        <div id="chart-sector4-courses" style="background: var(--primary); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                        <div id="chart-sector4-barriers" style="background: var(--danger); width: 0%; height: 100%; transition: width 0.5s;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Legend -->
+                            <div style="display: flex; gap: 12px; margin-top: 14px; font-size: 0.75rem; justify-content: center; font-weight: 600;">
+                                <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--primary); border-radius: 2px;"></span> Cursos Activos</span>
+                                <span style="display: flex; align-items: center; gap: 4px;"><span style="display: inline-block; width: 12px; height: 12px; background: var(--danger); border-radius: 2px;"></span> Barreras Activas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL: USUARIOS -->
+                <div id="admin-panel-users" class="admin-tab-panel">
+                    <div class="table-actions-row">
+                        <div class="table-search-box">
+                            <input type="text" id="admin-users-search" placeholder="Buscar usuario...">
+                        </div>
+                        <button id="btn-admin-add-user" class="btn btn-primary">➕ Crear Usuario</button>
+                    </div>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANEL: CURSOS -->
+                <div id="admin-panel-courses" class="admin-tab-panel">
+                    <div class="table-actions-row">
+                        <div class="table-search-box">
+                            <input type="text" id="admin-courses-search" placeholder="Buscar curso...">
+                        </div>
+                        <button id="btn-admin-add-course" class="btn btn-primary">➕ Crear Curso</button>
+                    </div>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Sector</th>
+                                    <th>Aula/Taller</th>
+                                    <th>Horario</th>
+                                    <th>Docente</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-courses-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PANEL: BARRERAS -->
+                <div id="admin-panel-barriers" class="admin-tab-panel">
+                    <div class="table-actions-row">
+                        <div class="table-search-box">
+                            <input type="text" id="admin-barriers-search" placeholder="Buscar reporte...">
+                        </div>
+                    </div>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Aula/Espacio</th>
+                                    <th>Detalles</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-barriers-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- MODAL DE CREAR/EDITAR USUARIOS -->
+    <div id="admin-user-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content card">
+            <button id="close-user-modal-btn" class="close-modal-btn">&times;</button>
+            <h3 id="user-modal-title">Crear Nuevo Usuario</h3>
+            <form id="admin-user-form">
+                <input type="hidden" id="user-form-mode" value="create">
+                <div class="input-group">
+                    <label for="user-form-username">Usuario (ID):</label>
+                    <input type="text" id="user-form-username" placeholder="ej. jsmith" required>
+                </div>
+                <div class="input-group">
+                    <label for="user-form-fullname">Nombre Completo:</label>
+                    <input type="text" id="user-form-fullname" placeholder="ej. Juan Pérez" required>
+                </div>
+                <div class="admin-modal-row">
+                    <div class="input-group">
+                        <label for="user-form-role">Rol:</label>
+                        <select id="user-form-role" required>
+                            <option value="Docente">Docente</option>
+                            <option value="Administrador">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="user-form-status">Estado:</label>
+                        <select id="user-form-status" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Desactivado">Desactivado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin-modal-footer">
+                    <button type="button" id="btn-cancel-user-modal" class="btn btn-text">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CREAR/EDITAR CURSOS -->
+    <div id="admin-course-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content card">
+            <button id="close-course-modal-btn" class="close-modal-btn">&times;</button>
+            <h3 id="course-modal-title">Crear Nuevo Curso</h3>
+            <form id="admin-course-form">
+                <input type="hidden" id="course-form-mode" value="create">
+                <input type="hidden" id="course-form-id" value="">
+                <div class="input-group">
+                    <label for="course-form-name">Nombre del Curso:</label>
+                    <input type="text" id="course-form-name" placeholder="ej. Soldadura Eléctrica Avanzada" required>
+                </div>
+                <div class="admin-modal-row">
+                    <div class="input-group">
+                        <label for="course-form-sector">Sector:</label>
+                        <select id="course-form-sector" required>
+                            <option value="Sector S1">Sector S1 (Oeste)</option>
+                            <option value="Sector S2">Sector S2 (Este)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="course-form-space">Aula/Taller:</label>
+                        <select id="course-form-space" required></select>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="course-form-schedule">Horario:</label>
+                    <input type="text" id="course-form-schedule" placeholder="ej. Martes 18:30 - 22:30" required>
+                </div>
+                <div class="admin-modal-row">
+                    <div class="input-group">
+                        <label for="course-form-teacher">Docente Responsable:</label>
+                        <input type="text" id="course-form-teacher" placeholder="ej. Carlos Herrero">
+                    </div>
+                    <div class="input-group">
+                        <label for="course-form-status">Estado:</label>
+                        <select id="course-form-status" required>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin-modal-footer">
+                    <button type="button" id="btn-cancel-course-modal" class="btn btn-text">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Incluir Marzipano desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marzipano/0.10.2/marzipano.min.js"></script>
+
+    <!-- Cargar Lógica del Sistema mediante Módulos JS -->
+    <script type="module" src="js/app.js?v=4"></script>
+</body>
+</html>

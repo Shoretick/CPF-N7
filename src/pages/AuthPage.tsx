@@ -5,8 +5,8 @@ import styles from './AuthPage.module.css'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 
-const ADMIN_USER = 'admin'
-const ADMIN_PASSWORD = 'admin'
+const ADMIN_USER = ''
+const ADMIN_PASSWORD = ''
 
 export default function AuthPage() {
   const navigate = useNavigate()
@@ -15,6 +15,7 @@ export default function AuthPage() {
   const [error, setError] = useState('')
 
   const goToHome = () => navigate('/inicio')
+    const goToPanel = () => navigate('/admin-page')
 
   const handleGoogleLogin = async () => {
     setError('')
@@ -33,7 +34,7 @@ export default function AuthPage() {
     setError('')
 
     if (username === ADMIN_USER && password === ADMIN_PASSWORD) {
-      goToHome()
+      goToPanel()
       return
     }
     setError('Usuario o contraseña incorrectos')
@@ -81,38 +82,7 @@ export default function AuthPage() {
         </p>
 
         <form className={styles.credentialsForm} onSubmit={handleCredentialsSubmit}>
-          <div className={styles.field}>
-            <span className={styles.fieldLabel}>Usuario o email</span>
-            <div className={styles.inputContainer}>
-              <span className={styles.inputIcon}>👤</span>
-              <input
-                className={styles.input}
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                autoComplete="username"
-                placeholder="Ingresá tu usuario o email"
-              />
-            </div>
-          </div >
-        
-
-          <div >
-            <span className={styles.fieldLabel}>Contraseña</span>
-            <div className={styles.inputContainer}>
-              <span className={styles.inputIcon}>🔒</span>
-              <input
-                className={styles.input}
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-                placeholder="Ingresá tu contraseña"
-              />
-            </div>
-          </div>
-
-          {error && username && <p className={styles.error}>{error}</p>}
+          
 
           <button type="submit" className={styles.credentialsButton} >
             Acceder como administrador
