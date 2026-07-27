@@ -9,17 +9,19 @@ export const AccessCard = ({
   days, 
   cardRoute, 
   buttonRoute,
-  useAltColor 
+  useAltColor, 
+  botontext,
+  img
+
 }) => {
   return (
     <div className={styles.card}>
       {/* Gráfico/Icono de la izquierda */}
       <div className={`${styles.imagePlaceholder} ${useAltColor ? styles.bluePlaceholder : ''}`}>
         {/* Usamos un SVG simple emulando las puertas de tu captura */}
-        <svg className={styles.iconGraphic} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M3 3h18v18H3V3z" />
-          <path d="M12 3v18M3 12h18" />
-        </svg>
+        <img src={img} className={styles.iconGraphic} >
+          
+        </img>
       </div>
 
       {/* Información Central */}
@@ -36,23 +38,23 @@ export const AccessCard = ({
       {/* Horarios y Botón de la derecha */}
       <div className={styles.scheduleDetails}>
         <div className={styles.scheduleItem}>
-          <span className={styles.scheduleIcon}>🕒</span>
+        
           <div className={styles.scheduleText}>
-            <strong>Horario de apertura</strong>
-            {hours}
+            <strong>{hours} </strong>
+            
           </div>
         </div>
 
         <div className={styles.scheduleItem}>
-          <span className={styles.scheduleIcon}>📅</span>
+          <span className={styles.scheduleIcon}>♿🧍🚗</span>
           <div className={styles.scheduleText}>
-            <strong>Días</strong>
+            
             {days}
           </div>
         </div>
 
         <a href={buttonRoute} className={`${styles.actionBtn} ${useAltColor ? styles.blueBtn : ''}`}>
-          📍 Ver cómo llegar
+           {botontext}
         </a>
       </div>
     </div>

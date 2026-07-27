@@ -2,8 +2,8 @@ import React from 'react';
 import { AccessCard } from './AccessCard';
 import { VirtualTourButton } from './VirtualTourButton';
 import './AccessSelection.css';
-import image1 from "../../../recursos/AccDragones.jpg"
-import image2 from "../../../recursos/AccRamsay.jpg"
+import image1 from "../../../recursos/ENTRADA DRAGONES.png"
+import image2 from "../../../recursos/ENTRADA RAMSEY.png"
 
 export const AccessSelection = () => {
   // Datos simulados (reemplaza las imágenes con tus rutas locales o URLs)
@@ -11,17 +11,18 @@ export const AccessSelection = () => {
     {
       id: 1,
       title: "Acceso Ramsay",
-      address: "Calle Ramsay 2250",
+      address: "Ramsay 2250 Entre calles Mendoza y Blanco Encalada",
       image: image2, // Reemplaza por tu imagen de Ramsay
-      scheduleText: "Este acceso está abierto desde 9 AM hasta 6 PM",
+      scheduleText: "🕒 08:00 a 18:00",
       route: "/accesor360", // <-- Coloca tu ruta aquí
       isChecked: true
     },
     {
       id: 2,
       title: "Acceso Dragones",
-      address: "Calle Dragones 2201",
+      address: "Dragones 2201 Esquina Mendoza",
       image: image1, // Reemplaza por tu imagen de Dragones
+      scheduleText: "🕒 08:00 a 22:00",
       route: "/accesod360", // <-- Coloca tu ruta aquí
       isChecked: false
     }
@@ -40,7 +41,7 @@ export const AccessSelection = () => {
             image={access.image}
             scheduleText={access.scheduleText}
             route={access.route}
-            isChecked={access.isChecked}
+           
           />
         ))}
       </div>

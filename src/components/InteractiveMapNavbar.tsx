@@ -27,7 +27,7 @@ export default function InteractiveMapNavbar() {
           aria-label="Volver a la página anterior"
           
         >
-          <BackIcon />
+          {/*<BackIcon />*/}
         </button>
 
         <div className={styles.brand}>
@@ -41,7 +41,7 @@ export default function InteractiveMapNavbar() {
         
         
             <span className={styles.logoPlaceholder}>
-              <img src={logo} alt="logo" width="100%"/>
+              <img src={logo} alt="logo" width="85%"/>
             </span>
             </Link>
           </div>
@@ -55,7 +55,7 @@ export default function InteractiveMapNavbar() {
           <AccessibilityButton variant="navbar" />
         </div>
 
-        <button
+       {/* */ } <button
           type="button"
           className={styles.menuButton}
           onClick={() => setMenuOpen((open) => !open)}
@@ -91,7 +91,7 @@ export default function InteractiveMapNavbar() {
             ))}
           </ul>
         </nav>
-      )}
+      )} 
     </header>
   )
 }

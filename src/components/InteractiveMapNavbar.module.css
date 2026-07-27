@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #004f69;
+  background-color: #006988;
   color: #f9f9f9;
   position: relative;
   z-index: 100;
@@ -49,14 +49,14 @@
 }
 
 .logoSlot {
-  width: 52px;
-  height: 52px;
-  border-radius: 10px;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
   border: 2px dashed rgba(249, 249, 249, 0.5);
    background-color: #f9f9f9;
-  display: flex;
+  display:flex;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   flex-shrink: 0;
 }
 
@@ -66,6 +66,7 @@
   color: #f9f9f9;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  padding: 8%;
 }
 
 .brandTextGroup {
@@ -122,7 +123,7 @@
 }
 
 .menuIcon span {
-  display: block;
+  display: none;
   width: 100%;
   height: 2px;
   background-color: #f9f9f9;
@@ -153,6 +154,7 @@
 }
 
 .mobileNavLink:focus-visible {
+  
   outline: 2px solid #f9f9f9;
   outline-offset: 2px;
   border-radius: 4px;

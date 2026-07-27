@@ -14,11 +14,11 @@ export default function LocationSection( {MAP_EMBED_URL}) {
         <div className={styles.divider} role="separator" aria-hidden="true" />
 
         <p className={styles.description}>
-          Ingresar por Dragones 2201 durante todo el dia o bien por Ramsay 2250 hasta
-          las 13 hs.
+          Sede Institucional: Ramsay 2250
+          (esquina Dragones), Belgrano, CABA
         </p>
 
-        <h3 className={styles.subtitle}>Mapa</h3>
+        
 
         <div className={styles.mapWrapper}>
           <iframe
@@ -36,10 +36,10 @@ export default function LocationSection( {MAP_EMBED_URL}) {
         <div className={styles.actions} >
            
           <Link to="/accesodyr" className={styles.buttonPrimary}>
-             Recorre el CFP N° 7
+             Recorré el CFP N°7
           </Link>
           <Link to="/mapa" className={styles.buttonSecondary}>
-            ¿Como llego al aula?
+            ¿Cómo llego al aula?
           </Link>
         </div>
       </div>

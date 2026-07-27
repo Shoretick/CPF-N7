@@ -113,7 +113,7 @@ export default function AccessDyR () {
 
       <div className={styles.mobileLayout}>
         <main className={styles.mobileMain}>
-          <h1 className={styles.mobileTitle}>Seleccioná tu acceso</h1>
+          
 
           <div className={styles.selectWrapper}>
             

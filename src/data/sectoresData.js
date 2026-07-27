@@ -3,9 +3,9 @@
 
 export const sectoresData = {
   banos: {
-    titulo: "Baño Común (Sanitarios ",
+    titulo: "Aulas",
     subtitulo:"esto es un subtitulo",
-    imagen: "../../recursos/imgBcomun.png", // Ruta a tu imagen
+    imagen: "../../recursos/au", // Ruta a tu imagen
     normas: [
       "Transitar por el pasillo de forma ordenada.",
       "Mantener la higiene del sector.",
@@ -114,6 +114,37 @@ export const sectoresData = {
       "Avisar de inmediato al personal a cargo.",
       "No tocar los insumos del botiquín sin autorización."
     ]
+  },
+  "aula-sector4":{
+    url:"/marzipano/Por separado/Aula - Sector 4/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
+  },
+  "carpinteria-sector1":{
+    url:"/marzipano/Por separado/Carpinteria - Sector 1/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
+  },
+  "gastronomia-A-sector4":{
+    url:"/marzipano/Por separado/Gastronomia A - Sector 4/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
+  },
+  "taller-energia-sector1":{
+    url:"/marzipano/Por separado/Gastronomia A - Sector 4/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
+  },
+  "dragones":{
+    url:"/marzipano/Por separado/Dragones/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
+  },
+  "ramsay":{
+    url:"/marzipano/Por separado/Ramsay/app-files/index.html",
+    descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
+    title:"Navegación virtual interactiva",
   }
   // ... agregas los demás sectores aquí
+
 };

@@ -3,7 +3,7 @@ import styles from './LocationSectionDyR.module.css'
 
 
 
-export default function LocationSectionDyR( {MAP_EMBED_URL,title,description}) {
+export default function LocationSectionDyR( {MAP_EMBED_URL,title,description,subtitle,urlbtn1,urlbtn2}) {
   return (
     <section className={styles.section} id="ubicacion" aria-labelledby="ubicacion-titulo">
       <div className={styles.card}>
@@ -17,7 +17,7 @@ export default function LocationSectionDyR( {MAP_EMBED_URL,title,description}) {
          {description}
         </p>
 
-        <h3 className={styles.subtitle}>Vista 360</h3>
+        <h3 className={styles.subtitle}>{subtitle}</h3>
 
         <div className={styles.mapWrapper}>
           <iframe
@@ -35,10 +35,10 @@ export default function LocationSectionDyR( {MAP_EMBED_URL,title,description}) {
         <div className={styles.actions}>
           
           <Link to="/inicio" className={styles.buttonPrimary}>
-             Ir al Inicio
+             Botón Ir al Inicio
           </Link>
-          <Link to="/accesoDyR" className={styles.buttonSecondary}>
-           Accesos
+          <Link to={urlbtn1} className={styles.buttonSecondary}>
+           Terminar navegación
           </Link>
         </div>
       </div>

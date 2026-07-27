@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import AccessCard from './AccessCard';
 import styles from './AccessSelectionDesktop.module.css';
+import image1 from "../../../recursos/ENTRADA DRAGONES.png"
+import image2 from "../../../recursos/ENTRADA RAMSEY.png"
 
 export const AccessSelectionDesktop = () => {
   // Estado para los minutos del día (de 0 a 1439). 
@@ -42,26 +44,27 @@ export const AccessSelectionDesktop = () => {
       <header className={styles.headerRow}>
         <div className={styles.titleSection}>
           <h2 className={styles.mainTitle}>
-            <span className={styles.titleIcon}>📍</span> Seleccioná tu acceso
+             Seleccioná tu acceso
           </h2>
           <p className={styles.subtitle}>
-            Elegí por cuál acceso vas a ingresar para conocer cómo llegar y qué encontrarás en tu recorrido.
+            Cada acceso al predio cierra a un horario
+distinto.
+Usá el simulador de hora para saber si tu
+acceso preferido estará abierto o
+cerrado durante tu visita al CFP N°7
           </p>
         </div>
 
         <div className={styles.rightHeader}>
           {/* Alerta de Importante */}
           <div className={styles.infoBanner}>
-            <span className={styles.infoIcon}>ⓘ</span>
-            <div className={styles.infoText}>
-              <strong>Importante</strong>
-              <p>Los accesos pueden estar abiertos o cerrados según el horario.</p>
-            </div>
+           
+           
           </div>
 
           {/* Simulador de hora */}
           <div className={styles.simulatorContainer}>
-            <span>SIMULADOR DE HORA:</span>
+            <span>Simulador de hora:</span>
             <input 
               type="range" 
               min="0" 
@@ -79,29 +82,34 @@ export const AccessSelectionDesktop = () => {
       <section className={styles.cardsGrid}>
         <AccessCard 
           title="Acceso Ramsay"
-          description="Ingreso principal sobre calle Ramsay."
-          hours="06:00 - 21:30"
-          isOpen={checkIfOpen("06:00 - 21:30")} // Evaluación dinámica
+          description="Ramsay 2250 Entre calles Mendoza y Blanco Encalada."
+          hours="🕒 08:00 a 18:00"
+          isOpen={checkIfOpen("06:00 - 18:00")} // Evaluación dinámica
           days="Lunes a Viernes"
           buttonRoute="/accesor360" 
           useAltColor={false}
+          botontext="Ingresar por Ramsay"
+          img= {image2}
+
         />
 
         <AccessCard 
           title="Acceso Dragones"
           description="Ingreso lateral sobre calle Dragones."
-          hours="07:00 - 19:00"
-          isOpen={checkIfOpen("07:00 - 19:00")} // Evaluación dinámica
+          hours="🕒 08:00 a 22:00"
+          isOpen={checkIfOpen("08:00 - 22:00")} // Evaluación dinámica
           days="Lunes a Viernes"
           buttonRoute="/accesod360" 
           useAltColor={true}
+          botontext="Ingresar por Dragones"
+          img={image1}
         />
       </section>
 
       {/* Botón Inferior */}
       <footer className={styles.bottomSection}>
-        <a href="/inicio" className={styles.virtualTourBtn}>
-          ir al Inicio <span className={styles.btnArrow}>→</span>
+        <a href="/inicio" className={styles.virtualTourBtn}><span className={styles.btnArrow}>← </span>
+          Volver a la web del CFP N°7 
         </a>
       </footer>
 

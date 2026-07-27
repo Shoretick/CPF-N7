@@ -34,7 +34,7 @@ export default function VirtualTour({
     <div className={styles.desktopLayout}>
       {/* Columna Izquierda: Plano */}
       <div>
-        <h3 className={styles.columnTitle}>Plano del establecimiento</h3>
+        <h3 className={styles.columnTitle}>Plano de tu recorrido</h3>
         <div className={styles.mapWrapper}>
           <img src={mapImageUrl} alt="Plano del establecimiento" className={styles.mapImg} />
         </div>
@@ -42,7 +42,7 @@ export default function VirtualTour({
 
       {/* Columna Derecha: Vista 360° */}
       <div>
-        <h3 className={styles.columnTitle}>Vista 360° del recorrido</h3>
+        <h3 className={styles.columnTitle}>Navegación virtual interactiva</h3>
         <div className={styles.viewer360}>
           <div ref={marzipanoRef} className={styles.marzipanoContainer} >
 
@@ -58,29 +58,7 @@ export default function VirtualTour({
 
           </div>
 
-          <div className={styles.floatingTooltip}>
-            <span>Seguí por el pasillo cubierto y girá a la derecha.</span>
-            <button className={styles.closeTooltip}>×</button>
-          </div>
 
-          <div className={styles.floatingMinimap}>
-            <img src={miniMapImageUrl} className={styles.minimapThumb} alt="Mini mapa" />
-            <div>Estás aquí</div>
-          </div>
-
-          
-
-          <div className={styles.scenesCarousel}>
-            {scenes.map((scene, idx) => (
-              <div 
-                key={idx} 
-                className={`${styles.sceneThumb} ${idx === 1 ? styles.sceneThumbActive : ''}`}
-                style={{ backgroundImage: `url(${scene.thumbUrl})` }}
-              >
-                <span className={styles.sceneLabel}>{scene.name}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -119,7 +97,7 @@ export default function VirtualTour({
       {/* Botón común inferior */}
       <div className={styles.actionRow}>
         <a href={startNavigationRoute} className={styles.primaryActionBtn}>
-          Iniciar navegación <span className={styles.btnArrow}>→</span>
+         Terminar navegación <span className={styles.btnArrow}>→</span>
         </a>
       </div>
     </div>

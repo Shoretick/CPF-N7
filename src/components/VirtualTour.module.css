@@ -24,6 +24,8 @@
 }
 
 .mapWrapper {
+  margin-top: 30%;
+  
   border: 4px solid #004c66;
   border-radius: 8px;
   overflow: hidden;
@@ -31,7 +33,8 @@
 }
 
 .mapImg {
-  width: 100%;
+margin-left: 5%;
+  width: 90%;
   height: auto;
   display: block;
 }
@@ -39,7 +42,7 @@
 /* Contenedor del Visor 360 (Marzipano o Mock) */
 .viewer360 {
   position: relative;
-  width: 100%;
+  width: 135%;
   aspect-ratio: 16 / 9;
   background-color: #eaeaea;
   border-radius: 8px;

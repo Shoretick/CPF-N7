@@ -39,7 +39,7 @@ export default function AccessibilityPanel({ onClose }: AccessibilityPanelProps)
           </button>
         </div>
 
-        <p className={styles.subtitle}>Configura tu experiencia</p>
+        <p className={styles.subtitle}>Configurá tu experiencia</p>
 
         <div className={styles.options}>
           <div className={styles.option}>

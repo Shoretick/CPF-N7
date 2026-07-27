@@ -1,15 +1,20 @@
 import Navbar from '../../components/Navbar'
+import InteractiveMapNavbar from '../../components/InteractiveMapNavbar'
 import LocationSectionDyR from '../../components/LocationSectionDyR' 
-import styles from './AccessR360.module.css'
+import styles from './AccessD360.module.css'
+import AccessibilityButton from '../../components/AccessibilityButton'
 
 export default function AccessD360 () {
   return (
     <div className={styles.page}>
-      <Navbar />
+      <InteractiveMapNavbar />
+      <div className={styles.mobileFab}>
+        <AccessibilityButton variant="floating" />
+      </div>
       <main className={styles.main} id="inicio">
        
 
-        <LocationSectionDyR description={"Acceso por Dragones 2201 durante todo el dia "} title={"Acceso por Dragones 2201"} MAP_EMBED_URL={"https://www.google.com/maps/embed?pb=!4v1782722246425!6m8!1m7!1s3QK8Ztq-FScbdt6A0OAJEQ!2m2!1d-34.55173648070282!2d-58.44193453451932!3f87.02581283164648!4f-3.7999488145567!5f1.743996629979049"}
+        <LocationSectionDyR subtitle="Acceso Dragones" description={"Usá las flechas táctiles para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla."} title={" Recorrido virtual del CFP N°7"} MAP_EMBED_URL={"/marzipano/Recorridos completos linkeados/Dragones hasta puerta principal CFP/app-files/index.html"}
 />
       </main>
     </div>

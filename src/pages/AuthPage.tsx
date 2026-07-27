@@ -9,6 +9,7 @@ const ADMIN_USER = ''
 const ADMIN_PASSWORD = ''
 
 export default function AuthPage() {
+  
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -17,12 +18,42 @@ export default function AuthPage() {
   const goToHome = () => navigate('/inicio')
     const goToPanel = () => navigate('/admin-page')
 
-  const handleGoogleLogin = async () => {
+ const handleGoogleLogin = async () => {
     setError('')
     try {
+      // 1. Iniciar sesión con Firebase
       const result = await signInWithPopup(auth, googleProvider)
-      console.log('Usuario logueado con éxito:', result.user.email)
+      const user = result.user
+
+      // 2. Obtener el ID Token de Firebase para validar en el backend
+      const idToken = await user.getIdToken()
+
+      // 3. Enviar la información a tu API en Railway
+      const response = await fetch('https://remarkable-adaptation-production-5d63.up.railway.app/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          
+        },
+        body: JSON.stringify({
+         
+          tokenGoogle: idToken // También lo incluyo en el body por si tu backend lo espera ahí
+        })
+      })
+
+      if (!response) {
+        throw new Error('Error en la respuesta del servidor')
+      }
+
+      const data = await response.json()
+      console.log('Respuesta de tu backend:', data)
+
+      // Guardar token propio o estado de sesión si tu backend responde con uno (opcional)
+      // localStorage.setItem('token', data.token)
+
+      // 4. Redirigir al usuario
       goToHome()
+
     } catch (err) {
       console.error('Error al iniciar sesión con Google:', err)
       setError('No se pudo iniciar sesión con Google. Intentá de nuevo.')

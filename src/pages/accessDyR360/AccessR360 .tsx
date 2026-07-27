@@ -1,15 +1,20 @@
-import Navbar from '../../components/Navbar'
+
+import InteractiveMapNavbar from '../../components/InteractiveMapNavbar'
 import LocationSectionDyR from '../../components/LocationSectionDyR' 
-import styles from './AccessR360.module.css'
+import styles from './AccessD360.module.css'
+import AccessibilityButton from '../../components/AccessibilityButton'
 
 export default function AccessR360 () {
   return (
     <div className={styles.page}>
-      <Navbar />
+      <InteractiveMapNavbar />
+      <div className={styles.mobileFab}>
+        <AccessibilityButton variant="floating" />
+      </div>
       <main className={styles.main} id="inicio">
        
 
-        <LocationSectionDyR description={"Ingresar Ramsay 2250 hasta las 13 hs."} title={" Acceso por Ramsay 2250"} MAP_EMBED_URL={"https://www.google.com/maps/embed?pb=!4v1782716887833!6m8!1m7!1sWRDWWvJ2UWrMh8edU3FyLQ!2m2!1d-34.55039836578997!2d-58.44136499984281!3f238.8627463689382!4f-5.655751814795124!5f0.7820865974627469"}
+        <LocationSectionDyR subtitle="Acceso Ramsay" description={"Usá las flechas táctiles para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla."} title={" Recorrido virtual del CFP N°7"} MAP_EMBED_URL={"/marzipano/Recorridos completos linkeados/Ramsay hasta puerta principal CFP/app-files/index.html"}
 />
       </main>
     </div>

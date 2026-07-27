@@ -15,19 +15,19 @@ import { Link } from 'react-router-dom'
 
 
 
-const COURSES = Array.from({ length: 8 }, (_, i) => `Curso ${i + 1}`)
+const COURSES = ["Elaborador/a de pastas artesanales","Electricista de Inmuebles","Pizzero"]
 
 
 const SPACE_CARDS = [
   [
-    { id: 'entrada', label: 'Entrada', icon: ClassroomIcon, link:"/sector/entrada1"},
-    { id: 'taller', label: 'Taller', icon: WorkshopIcon, link:"/sector/taller" },
-    { id: 'recreo', label: 'Recreo', icon: PlaygroundIcon , link:"/sector/recreo" },
+    { id: 'Aulas', label: 'Aulas', icon: ClassroomIcon, link:"/marzipano-360/aula-sector4"},
+    { id: 'Gastronomia A', label: 'Gastronomia A', icon: WorkshopIcon, link:"/marzipano-360/gastronomia-A-sector4" },
+    { id: 'Dragones', label: 'Acc. Dragones', icon: PlaygroundIcon , link:"/marzipano-360/dragones" },
   ],
   [
-    { id: 'cocina', label: 'Cocina', icon: KitchenIcon , link:"/sector/cocina" },
-    { id: 'informatica', label: 'Informatica', icon: ComputerIcon , link:"/sector/informatica" },
-    { id: 'informacion', label: 'Informacion', icon: InfoIcon , link:"/sector/informacion" },
+    { id: 'Carpinteria', label: 'Carpinteria', icon: KitchenIcon , link:"/marzipano-360/carpinteria-sector1" },
+    { id: 'Taller energia', label: 'Taller energia', icon: ComputerIcon , link:"/marzipano-360/taller-energia-sector1" },
+    { id: 'Ramsay', label: 'Ramsay', icon: InfoIcon , link:"/marzipano-360/ramsay" },
   ],
 ] as const
 
@@ -72,9 +72,9 @@ const SECTOR_CARDS = [
 
 const UTILITY_CARDS = [
   {
-    id: 'u1',
-    title: 'Entrada',
-    description: 'Entrada 360 interactiva.',
+    id: 'u0',
+    title: 'Aulas',
+    description: '',
     link:"/sector/entrada1",
     icon: RestroomIcon,
     image:ico1S4,
@@ -82,8 +82,8 @@ const UTILITY_CARDS = [
   },
   {
     id: 'u1',
-    title: 'Baños',
-    description: 'Baños para estudiantes',
+    title: 'Cocinas',
+    description: '',
     link:"/sector/banos",
     icon: RestroomIcon,
     image:ico1S4,
@@ -91,23 +91,23 @@ const UTILITY_CARDS = [
   },
   {
     id: 'u2',
-    title: 'Baño Accesible',
-    description: 'baño adaptado para personas con discapacidad',
+    title: 'Talleres',
+    description: '',
     link:"/sector/banos-accesible",
     icon: RestroomIcon,
     cardClass: styles.utilityCard2,
   },
   {
     id: 'u3',
-    title: 'primeros auxilios',
-    description: 'Botiquin y atencion de emergencias.',
+    title: 'Informática',
+    description: '',
     link:"/sector/primeros-auxilios",
     icon: RestroomIcon,
     cardClass: styles.utilityCard3,
   },
   {
     id: 'u4',
-    title: "Agua potable",
+    title: "Baños",
     description: 'Puntos de agua disponibles',
     link:"/sector/agua-potable",
     icon: RestroomIcon,
@@ -115,7 +115,7 @@ const UTILITY_CARDS = [
   },
   {
     id: 'u5',
-    title: 'Extintores y seguridad',
+    title: 'Información',
     description: 'Elementos de seguridad',
     link:"/sector/extintores-y-seguridad",
     icon: RestroomIcon,
@@ -142,7 +142,7 @@ export default function MapPage() {
 
       <div className={styles.mobileLayout}>
         <main className={styles.mobileMain}>
-          <h1 className={styles.mobileTitle}>¿A donde quieres ir?</h1>
+          <h1 className={styles.mobileTitle}>¿A dónde querés ir?</h1>
 
           <div className={styles.selectWrapper}>
             <select
@@ -191,20 +191,20 @@ export default function MapPage() {
             ))}
           </div>
 
-          <Link to="/mapmobile"type="button" className={styles.planButton} style={{ textDecoration: 'none' }}>
+          {/*<Link to="/mapmobile"type="button" className={styles.planButton} style={{ textDecoration: 'none' }}>
             <span>Ver el plano del Centro</span>
             <ArrowRightIcon />
-          </Link>
+          </Link>*/ }
         </main>
       </div>
 
       <div className={styles.desktopLayout}>
         <div className={styles.desktopContent}>
           <section className={styles.desktopLeft}>
-            <h1 className={styles.desktopTitle}>¿A donde quieres ir?</h1>
+            <h1 className={styles.desktopTitle}>¿A dónde querés ir?</h1>
 
-            <h2 className={styles.desktopSectionTitle}>SECTORES PRINCIPALES</h2>
-
+            <h2 className={styles.desktopSectionTitle}>Seleccioná por propuesta educativa</h2>
+{/* 
             <div className={styles.sectorGrid}>
               {SECTOR_CARDS.map((sector) => {
                 //const Icon = sector.icon
@@ -215,14 +215,14 @@ export default function MapPage() {
                     type="button"
                     className={`${styles.sectorCard} ${sector.cardClass}`}
                   >
-                    <span className={styles.sectorCode}>{sector.code}</span>
+                    <span className={styles.sectorCode}>{/*sector.code}</span>
                     <div className={styles.sectorIconWrap}>
                       <img src={sector.image} width="60%" />
                     </div>
                     <div className={styles.sectorFooter}>
                       <div className={styles.sectorTextGroup}>
-                        <h3 className={styles.sectorName}>{sector.name}</h3>
-                        <p className={styles.sectorDescription}>{sector.description}</p>
+                        <h3 className={styles.sectorName}>{/sector.name}</h3>
+                        <p className={styles.sectorDescription}>{/sector.description}</p>
                       </div>
                       <span className={styles.sectorArrow} aria-hidden="true">
                         &gt;
@@ -232,7 +232,7 @@ export default function MapPage() {
                 )
               })}
             </div>
-
+*/}
             <div className={styles.utilityGrid}>
               {UTILITY_CARDS.map((utility) => {
                 const Icon = utility.icon
@@ -272,7 +272,7 @@ export default function MapPage() {
 
           <aside className={styles.desktopRight}>
             <div className={styles.floorPlanCard}>
-              <h2 className={styles.floorPlanTitle}>PLANO GENERAL DEL ESTABLECIMIENTO</h2>
+              <h2 className={styles.floorPlanTitle}>Mapa del CFP N°7</h2>
               <div className={styles.floorPlanImageSlot} aria-label="Plano del edificio">
               
                 {mapaDelEdificio ? (

@@ -27,9 +27,9 @@ export default function App() {
           <Route path="/accesodyr" element={<AccessDyR />} />
           <Route path="/accesor360" element={<AccessR360 />} />
           <Route path="/accesod360" element={<AccessD360 />} />
-          <Route path="/marzipano-360" element={<Marzipano />} />
+          <Route path="/marzipano-360/:sectorId" element={<Marzipano />} />
           <Route path="/admin-page" element={<AdminPage/>} />
-           <Route path="/tour360" element={<Tour360 />} />
+           <Route path="/tour360/:sectorId" element={<Tour360 />} />
             <Route path="/mapmobile" element={<MapMobilePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
