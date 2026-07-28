@@ -20,9 +20,9 @@ const COURSES = ["Elaborador/a de pastas artesanales","Electricista de Inmuebles
 
 const SPACE_CARDS = [
   [
-    { id: 'Aulas', label: 'Aulas', icon: ClassroomIcon, link:"/marzipano-360/aula-sector4"},
-    { id: 'Gastronomia A', label: 'Gastronomia A', icon: WorkshopIcon, link:"/marzipano-360/gastronomia-A-sector4" },
-    { id: 'Dragones', label: 'Acc. Dragones', icon: PlaygroundIcon , link:"/marzipano-360/dragones" },
+    { id: 'Aula', label: 'Aula', icon: ClassroomIcon, link:"/marzipano-360/aula-sector4"},
+    { id: 'Gastronomia', label: 'Gastronomia', icon: WorkshopIcon, link:"/marzipano-360/gastronomia-A-sector4" },
+    { id: 'Acc. Dragones', label: 'Acc. Dragones', icon: PlaygroundIcon , link:"/marzipano-360/dragones" },
   ],
   [
     { id: 'Carpinteria', label: 'Carpinteria', icon: KitchenIcon , link:"/marzipano-360/carpinteria-sector1" },
@@ -73,7 +73,7 @@ const SECTOR_CARDS = [
 const UTILITY_CARDS = [
   {
     id: 'u0',
-    title: 'Aulas',
+    title: 'Aula',
     description: '',
     link:"/tour360/aula-sector4",
     icon: RestroomIcon,
@@ -91,7 +91,7 @@ const UTILITY_CARDS = [
   },
   {
     id: 'u2',
-    title: 'Gastronomia A',
+    title: 'Gastronomia ',
     description: '',
     link:"/tour360/gastronomia-A-sector4",
     icon: RestroomIcon,
@@ -249,14 +249,14 @@ export default function MapPage() {
           
                     <div className={styles.utilityTop}>
                     <div>
-                      <Icon />
-                      </div>
-                      <h3 className={styles.utilityTitle}>{ utility.title}</h3>
-
+                      <h1 className={styles.utilityTitle}>{ utility.title}</h1>
                       
+                      </div>
+                      
+                  
                     </div>
                     <div className={styles.utilityFooter}>
-                      <p className={styles.utilityDescription}>{utility.description}</p>
+                      <p className={styles.utilityDescription}>{/*utility.description*/}</p>
                       <span className={styles.utilityArrow} aria-hidden="true">
                         &gt; 
                       </span>

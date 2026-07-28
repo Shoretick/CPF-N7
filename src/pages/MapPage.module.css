@@ -333,7 +333,7 @@
 
 .utilityCard {
   --utility-bg: #f9f9f9;
-  --utility-border: #d4d4d4;
+  --utility-border: #b49393;
   --utility-text: #1a242b;
   --utility-arrow-bg: #a3a3a3;
   --utility-arrow-color: #1a242b;
@@ -354,7 +354,7 @@
 }
 
 .utilityCard:hover {
-  border-color: #a3a3a3;
+  border-color: #004f69;
   box-shadow: 0 4px 12px rgba(26, 36, 43, 0.08);
   
 }
@@ -372,9 +372,9 @@
   --utility-bg: #f9f9f9;
   --utility-border: #d4d4d4;
   --utility-text: #1a242b;
-  --utility-arrow-bg: #a3a3a3;
+  --utility-arrow-bg: #77bde9;
   --utility-arrow-color: #1a242b;
-  height: 9rem;
+  height: 12rem;
 }
 
 .utilityTop {
@@ -398,12 +398,12 @@
 }
 
 .utilityTitle {
-  font-size: 0.80rem;
+  font-size: 1.20rem;
   font-weight: 700;
   color: var(--utility-text);
-  text-align:end;
+  text-align:center;
   width: 70%;
-  padding-top: 0.125rem;
+  padding-top: 3.125rem;
   
   
 }
@@ -467,6 +467,7 @@ padding-left:  1%;
 }
 
 .floorPlanImageSlot {
+
   width: 100%;
   flex: 1;
   min-height: 400px;
