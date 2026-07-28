@@ -7,7 +7,8 @@ import styles from './Tour360.module.css'
 import AccessSelection from "../components/AccessCard/AccessSelection"
 import AccessSelectionDesktop from '../components/AccessSelection/AccessSelectionDesktop'
 import VirtualTour from '../components/VirtualTour.jsx'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { sectoresData } from "../data/sectoresData.js"
 
 
 import ico1S4 from "../../recursos/llaveIcon.png"
@@ -99,6 +100,24 @@ const UTILITY_CARDS = [
 ] as const
 
 export default function Tour360() {
+
+  const { sectorId } = useParams();
+
+  // 1. Buscamos el sector en el diccionario de datos
+  const infoSector = sectoresData[sectorId || ''];
+  
+  // 2. CONTROL DE SEGURIDAD: Si no existe el sector, evitamos que la app se rompa
+  if (!infoSector) {
+    return (
+      <div style={{ padding: "40px", textAlign: "center", color: "red" }}>
+        <h2>⚠️ Error: Sector "{sectorId}" no configurado</h2>
+        <p>Asegúrate de agregar la clave exacta en tu archivo sectoresData.js</p>
+        <Link to="/inicio">Volver al inicio</Link>
+      </div>
+    );
+  }
+
+
 const lasEscenasDeEstaRuta = [
     { name: "Acceso Ramsay", thumbUrl: "https://via.placeholder.com/90x55" },
     { name: "Pasillo cubierto", thumbUrl: "https://via.placeholder.com/90x55" },
@@ -162,7 +181,8 @@ const lasEscenasDeEstaRuta = [
         scenes={lasEscenasDeEstaRuta}
         destinationChangeRoute=""
         originChangeRoute=""
-        startNavigationRoute="/marzipano-360"
+        url={infoSector.url}
+        startNavigationRoute="/mapa"
       />
 
  

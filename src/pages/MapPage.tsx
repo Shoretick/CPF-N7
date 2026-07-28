@@ -5,7 +5,7 @@ import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 import styles from './MapPage.module.css'
 
-import mapaDelEdificio from "../../recursos/mapaHD.png"
+import mapaDelEdificio from "../../recursos/planocfp7.png"
 import ico1S4 from "../../recursos/llaveIcon.png"
 import ico2S4 from "../../recursos/cocineroIcon.png"
 import ico3S4 from "../../recursos/pcIcon.png"
@@ -75,49 +75,49 @@ const UTILITY_CARDS = [
     id: 'u0',
     title: 'Aulas',
     description: '',
-    link:"/sector/entrada1",
+    link:"/tour360/aula-sector4",
     icon: RestroomIcon,
     image:ico1S4,
     cardClass: styles.utilityCard1,
   },
   {
     id: 'u1',
-    title: 'Cocinas',
+    title: 'Carpinteria',
     description: '',
-    link:"/sector/banos",
+    link:"/tour360/carpinteria-sector1",
     icon: RestroomIcon,
     image:ico1S4,
     cardClass: styles.utilityCard1,
   },
   {
     id: 'u2',
-    title: 'Talleres',
+    title: 'Gastronomia A',
     description: '',
-    link:"/sector/banos-accesible",
+    link:"/tour360/gastronomia-A-sector4",
     icon: RestroomIcon,
     cardClass: styles.utilityCard2,
   },
   {
     id: 'u3',
-    title: 'Informática',
+    title: 'Taller energia',
     description: '',
-    link:"/sector/primeros-auxilios",
+    link:"/tour360/taller-energia-sector1",
     icon: RestroomIcon,
     cardClass: styles.utilityCard3,
   },
   {
     id: 'u4',
-    title: "Baños",
+    title: "Acc. dragones",
     description: 'Puntos de agua disponibles',
-    link:"/sector/agua-potable",
+    link:"/tour360/dragones",
     icon: RestroomIcon,
     cardClass: styles.utilityCard4,
   },
   {
     id: 'u5',
-    title: 'Información',
+    title: 'Acc. Ramsay',
     description: 'Elementos de seguridad',
-    link:"/sector/extintores-y-seguridad",
+    link:"/tour360/ramsay",
     icon: RestroomIcon,
     cardClass: styles.utilityCard5,
   },

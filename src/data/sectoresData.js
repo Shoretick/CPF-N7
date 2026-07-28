@@ -17,7 +17,7 @@ export const sectoresData = {
   "entrada1": {
     titulo: "Entrada 360",
     imagen: "https://puntoclick.com.ar/storage/google-places/65e8e879e894b.jpg",
-    botonUrl:"/tour360",
+    botonUrl:"/tour360/dragones",
     normas: [
       "Uso prioritario para personas con discapacidad.",
       "Mantener el espacio libre de obstáculos.",
@@ -131,7 +131,7 @@ export const sectoresData = {
     title:"Navegación virtual interactiva",
   },
   "taller-energia-sector1":{
-    url:"/marzipano/Por separado/Gastronomia A - Sector 4/app-files/index.html",
+    url:"/marzipano/Por separado/Taller energia - Sector 1/app-files/index.html",
     descrption:"Usá las flechas táctiles o deslizá para recorrer el espacio. Seguí las indicaciones de navegación y accedé a más información seleccionando los círculos que aparezcan en pantalla.",
     title:"Navegación virtual interactiva",
   },

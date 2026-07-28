@@ -9,7 +9,8 @@ export default function VirtualTour({
   scenes = [],
   destinationChangeRoute = "#",
   originChangeRoute = "#",
-  startNavigationRoute = "#"
+  startNavigationRoute = "#",
+  url,
 }) {
   const [isMobile, setIsMobile] = useState(false);
   const marzipanoRef = useRef(null);
@@ -49,7 +50,7 @@ export default function VirtualTour({
              <iframe
             className={styles.marzipanoContainer}
             title="Ubicación del Centro de Formación Profesional CFP N° 7 en Ramsay 2250, Buenos Aires"
-            src="/marzipano/entrada1-360/index.html"
+            src={url}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
