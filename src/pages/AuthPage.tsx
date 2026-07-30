@@ -5,53 +5,54 @@ import styles from './AuthPage.module.css'
 import AccessibilityButton from '../components/AccessibilityButton'
 import InteractiveMapNavbar from '../components/InteractiveMapNavbar'
 
-const ADMIN_USER = ''
-const ADMIN_PASSWORD = ''
+const ADMIN_USER = 'admin'
+const ADMIN_PASSWORD = '123'
 
 export default function AuthPage() {
-  
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
   const goToHome = () => navigate('/inicio')
-    const goToPanel = () => navigate('/admin-page')
+  const goToPanel = () => navigate('/admin-page')
 
- const handleGoogleLogin = async () => {
+  const handleGoogleLogin = async () => {
     setError('')
     try {
       // 1. Iniciar sesión con Firebase
       const result = await signInWithPopup(auth, googleProvider)
-      const user = result.user
+      console.log('✅ Google Auth exitoso en Firebase:', result.user.email)
+      goToHome()
+      } catch (err) {
+      console.error('❌ Error exacto de Firebase:', err)
+      setError(`Error: ${err.message}`)
+  }
+}
+      //const user = result.user
 
       // 2. Obtener el ID Token de Firebase para validar en el backend
       const idToken = await user.getIdToken()
 
-      // 3. Enviar la información a tu API en Railway
+      // 3. Enviar la información a la API en Railway
       const response = await fetch('https://remarkable-adaptation-production-5d63.up.railway.app/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          
         },
         body: JSON.stringify({
-         
-          tokenGoogle: idToken // También lo incluyo en el body por si tu backend lo espera ahí
+          tokenGoogle: idToken
         })
       })
 
-      if (!response) {
+      if (!response.ok) {
         throw new Error('Error en la respuesta del servidor')
       }
 
       const data = await response.json()
-      console.log('Respuesta de tu backend:', data)
+      console.log('Respuesta del backend:', data)
 
-      // Guardar token propio o estado de sesión si tu backend responde con uno (opcional)
-      // localStorage.setItem('token', data.token)
-
-      // 4. Redirigir al usuario
+      // 4. Redirigir al inicio
       goToHome()
 
     } catch (err) {
@@ -74,59 +75,122 @@ export default function AuthPage() {
   return (
     <div className={styles.page}> 
       <InteractiveMapNavbar />
+      
       <div className={styles.mobileFab}>
         <AccessibilityButton variant="floating" />
       </div>
 
-      
-    <div className={styles.pageContainer}>
-      
-      
-
-      
-      {/* SECCIÓN 1: USUARIOS / GOOGLE */}
-      <div className={styles.sectionBlock}>
-        <div className={styles.googleHeader}>
-          <h1 className={styles.title}>Iniciá sesión</h1>
-          <p className={styles.subtitle}>
-            para guardar tu configuración personalizada y recorridos favoritos
-          </p>
-        </div>
-
-        <button
-          type="button"
-          className={styles.googleButton}
-          onClick={handleGoogleLogin}
-        >
-          <GoogleIcon />
-          Continuar con Google
-        </button>
+      <main className={styles.pageContainer}>
         
-        {error && !username && <p className={styles.error}>{error}</p>}
-      </div>
+        {/* SECCIÓN 1: USUARIOS / INVITADOS / GOOGLE */}
+        <section className={styles.sectionBlock}>
+          <div className={styles.googleHeader}>
+            <h1 className={styles.title}>Iniciá sesión o explorá</h1>
+            <p className={styles.subtitle}>
+              Ingresá directamente o conectá tu cuenta para guardar recorridos favoritos
+            </p>
+          </div>
 
-      {/* SECCIÓN 2: ADMINISTRADORES */}
-      <div className={`${styles.sectionBlock} ${styles.adminBlock}`}>
-        <h2 className={styles.title}>Acceso para administradores</h2>
-        <p className={styles.adminSubtitle}>
-          Ingresá para gestionar la información del sistema
-        </p>
+          <div className={styles.userButtonsGroup}>
+            {/* Opción para ingresar directamente sin registro */}
+            <button
+              type="button"
+              className={styles.guestButton}
+              onClick={goToHome}
+              aria-label="Ingresar directamente sin iniciar sesión"
+            >
+              <UserIcon />
+              <span>Ingresar sin registro</span>
+            </button>
 
-        <form className={styles.credentialsForm} onSubmit={handleCredentialsSubmit}>
+            {/* Opción Google Auth */}
+            <button
+              type="button"
+              className={styles.googleButton}
+              onClick={handleGoogleLogin}
+              aria-label="Iniciar sesión con cuenta de Google"
+            >
+              <GoogleIcon />
+              <span>Continuar con Google</span>
+            </button>
+          </div>
           
+          {error && !username && <p className={styles.error} role="alert">{error}</p>}
+        </section>
 
-          <button type="submit" className={styles.credentialsButton} >
-            Acceder como administrador
+        {/* SECCIÓN 2: ADMINISTRADORES */}
+        <section className={`${styles.sectionBlock} ${styles.adminBlock}`}>
+          <h2 className={styles.title}>Acceso para administradores</h2>
+          <p className={styles.adminSubtitle}>
+            Ingresá tus credenciales para gestionar la información del sistema
+          </p>
+
+          <form className={styles.credentialsForm} onSubmit={handleCredentialsSubmit}>
+            
+            {/* Campo Usuario */}
+            <div className={styles.field}>
+              <label htmlFor="admin-username" className={styles.fieldLabel}>
+                USUARIO:
+              </label>
+              <div className={styles.inputContainer}>
+                <span className={styles.inputIcon} aria-hidden="true">👤</span>
+                <input
+                  id="admin-username"
+                  type="text"
+                  className={styles.input}
+                  placeholder="Ingrese usuario..."
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  autoComplete="username"
+                />
+              </div>
+            </div>
+
+            {/* Campo Contraseña */}
+            <div className={styles.field}>
+              <label htmlFor="admin-password" className={styles.fieldLabel}>
+                CONTRASEÑA:
+              </label>
+              <div className={styles.inputContainer}>
+                <span className={styles.inputIcon} aria-hidden="true">🔒</span>
+                <input
+                  id="admin-password"
+                  type="password"
+                  className={styles.input}
+                  placeholder="Ingrese contraseña..."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+              </div>
+            </div>
+
+            {error && username && <p className={styles.error} role="alert">{error}</p>}
+
+            <button type="submit" className={styles.credentialsButton}>
+              Acceder como administrador
+            </button>
+            
+          </form>
+
+          <button type="button" className={styles.forgotPassword}>
+            ¿Olvidaste tu contraseña?
           </button>
-          
-        </form>
+        </section>
 
-        <button type="button" className={styles.forgotPassword}>
-          ¿Olvidaste tu contraseña?
-        </button>
-      </div>
+      </main>
     </div>
-    </div>
+  )
+}
+
+function UserIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
   )
 }
 
