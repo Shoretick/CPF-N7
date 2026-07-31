@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, signInWithPopup } from "../firebase";
+import {
+  auth,
+  googleProvider,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "../firebase";
 import styles from "./AuthPage.module.css";
 import AccessibilityButton from "../components/AccessibilityButton";
 import InteractiveMapNavbar from "../components/InteractiveMapNavbar";
 
-const API_BASE_URL =
-  "https://remarkable-adaptation-production-5d63.up.railway.app/api";
 const ADMIN_USER = "admin";
 const ADMIN_PASSWORD = "123";
 
@@ -19,102 +22,89 @@ export default function AuthPage() {
   const goToHome = () => navigate("/inicio");
   const goToPanel = () => navigate("/admin-page");
 
-  const handleGuestLogin = () => {
-    localStorage.setItem("role", "guest");
-    localStorage.setItem("isAuthenticated", "false");
-    goToHome();
-  };
-
   const handleGoogleLogin = async () => {
     setError("");
     try {
-      // 1. Iniciar sesión con Firebase en el cliente
+      // 1. Iniciar sesión con Google a través del pop-up
       const result = await signInWithPopup(auth, googleProvider);
-      console.log("✅ Google Auth exitoso en Firebase:", result.user.email);
 
-      const user = result.user;
+      // 2. Extraer el token ID directo de GOOGLE (no el de Firebase)
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const googleIdToken = credential?.idToken;
 
-      // 2. Obtener el ID Token de Firebase para validar en el backend Express
-      const idToken = await user.getIdToken();
+      if (!googleIdToken) {
+        throw new Error("No se pudo obtener el token de Google");
+      }
 
-      // 3. Enviar el token a la API en Railway
-      const response = await fetch(`${API_BASE_URL}/auth/google`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      console.log("✅ Token de Google obtenido correctamente");
+
+      // 3. Enviar el token de Google a tu API en Railway
+      const response = await fetch(
+        //"https://remarkable-adaptation-production-5d63.up.railway.app/api/auth/google",
+        "http://localhost:3000/api/auth/google",
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            tokenGoogle: googleIdToken,
+          }),
         },
-        body: JSON.stringify({
-          tokenGoogle: idToken,
-        }),
-      });
+      );
 
       if (!response.ok) {
-        throw new Error("Error en la respuesta del servidor backend");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(
+          errorData.mensaje || "Error en la respuesta del servidor backend",
+        );
       }
 
       const data = await response.json();
-      console.log("Respuesta del backend:", data);
+      console.log("✅ Respuesta exitosa del backend:", data);
 
-      // 4. Guardar JWT del backend y estado de sesión en localStorage
-      const tokenToSave = data.token || idToken;
-      localStorage.setItem("token", tokenToSave);
+      // 4. Guardar la sesión generada por tu backend
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.usuario?.rol || "visitante");
       localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("role", data.user?.role || "user");
-      localStorage.setItem(
-        "user",
-        JSON.stringify(
-          data.user || { email: user.email, name: user.displayName },
-        ),
-      );
+      localStorage.setItem("user", JSON.stringify(data.usuario));
 
       // 5. Redirigir al inicio
       goToHome();
     } catch (err: any) {
+      // Si la ventana emergente fue cerrada por el usuario, no mostrar alerta grave
+      if (
+        err.code === "auth/cancelled-popup-request" ||
+        err.code === "auth/popup-closed-by-user"
+      ) {
+        console.warn("Pop-up cerrado por el usuario");
+        return;
+      }
+
       console.error("Error al iniciar sesión con Google:", err);
-      setError("No se pudo iniciar sesión con Google. Intentá de nuevo.");
+      setError(
+        err.message ||
+          "No se pudo iniciar sesión con Google. Intentá de nuevo.",
+      );
     }
   };
 
-  const handleCredentialsSubmit = async (event: React.FormEvent) => {
+  const handleCredentialsSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setError("");
 
-    try {
-      // 1. Intentar validar credenciales de Admin en el backend
-      const response = await fetch(`${API_BASE_URL}/auth/admin-login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("isAuthenticated", "true");
-        localStorage.setItem("role", "admin");
-        localStorage.setItem("user", JSON.stringify(data.user));
-        goToPanel();
-        return;
-      }
-    } catch (err) {
-      console.warn(
-        "Backend no disponible para admin, evaluando credenciales locales:",
-        err,
-      );
-    }
-
-    // 2. Fallback de validación local para desarrollo
     if (username === ADMIN_USER && password === ADMIN_PASSWORD) {
-      localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem("role", "admin");
+      localStorage.setItem("isAuthenticated", "true");
       localStorage.setItem(
         "user",
         JSON.stringify({ username: ADMIN_USER, role: "admin" }),
       );
+
       goToPanel();
       return;
     }
-
     setError("Usuario o contraseña incorrectos");
   };
 
@@ -138,18 +128,19 @@ export default function AuthPage() {
           </div>
 
           <div className={styles.userButtonsGroup}>
-            {/* Opción para ingresar directamente sin registro */}
             <button
               type="button"
               className={styles.guestButton}
-              onClick={handleGuestLogin}
+              onClick={() => {
+                localStorage.setItem("role", "guest");
+                goToHome();
+              }}
               aria-label="Ingresar directamente sin iniciar sesión"
             >
               <UserIcon />
               <span>Ingresar sin registro</span>
             </button>
 
-            {/* Opción Google Auth */}
             <button
               type="button"
               className={styles.googleButton}
@@ -179,7 +170,6 @@ export default function AuthPage() {
             className={styles.credentialsForm}
             onSubmit={handleCredentialsSubmit}
           >
-            {/* Campo Usuario */}
             <div className={styles.field}>
               <label htmlFor="admin-username" className={styles.fieldLabel}>
                 USUARIO:
@@ -201,7 +191,6 @@ export default function AuthPage() {
               </div>
             </div>
 
-            {/* Campo Contraseña */}
             <div className={styles.field}>
               <label htmlFor="admin-password" className={styles.fieldLabel}>
                 CONTRASEÑA:
