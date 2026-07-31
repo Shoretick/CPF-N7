@@ -1,6 +1,5 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 // Importamos las herramientas de autenticación de Firebase
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -11,14 +10,29 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-// Inicializar Firebase y Analytics
+// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+// Inicializar Analytics de forma segura para evitar que la app colapse
+let analytics = null;
+if (typeof window !== "undefined" && firebaseConfig.projectId) {
+  isSupported()
+    .then((supported) => {
+      if (supported) {
+        analytics = getAnalytics(app);
+      }
+    })
+    .catch((err) => {
+      console.warn("Analytics no inicializado:", err.message);
+    });
+}
 
 // Inicializar y exportar la Autenticación
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
-export { signInWithPopup };
+
+// Exportamos también GoogleAuthProvider para poder extraer credenciales en AuthPage
+export { analytics, signInWithPopup, GoogleAuthProvider };

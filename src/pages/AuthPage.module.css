@@ -1,14 +1,15 @@
 .page {
-  min-height: 100%;
+  min-height: 100vh;
   background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
 }
-
 
 /* Contenedor principal de la página */
 .pageContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   background-color: #f8f9fa;
   font-family: system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
@@ -16,6 +17,7 @@
   gap: 40px;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 /* Bloques comunes para ambas secciones */
@@ -30,18 +32,49 @@
 
 /* Estilos de textos */
 .title {
-
   color: #333e48;
   margin-bottom: 8px;
   font-weight: 700;
+  font-size: 1.5rem;
 }
 
-.subtitle, .adminSubtitle {
-
+.subtitle, 
+.adminSubtitle {
   color: #707a84;
   margin-bottom: 24px;
   line-height: 1.4;
-  max-width: 280px;
+  font-size: 0.95rem;
+  max-width: 300px;
+}
+
+/* Grupo de botones de usuario */
+.userButtonsGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Botón Ingresar Sin Registro */
+.guestButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background-color: #004b6e;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.guestButton:hover {
+  background-color: #003650;
 }
 
 /* Botón de Google */
@@ -73,9 +106,10 @@
 
 /* Contenedor específico para Admin en versión mobile */
 .adminBlock {
-  background-color: #f4f7f9; /* Fondo sutil para destacar el form en mobile */
+  background-color: #f4f7f9;
   padding: 24px;
   border-radius: 16px;
+  box-sizing: border-box;
 }
 
 /* Formulario */
@@ -97,7 +131,7 @@
 .fieldLabel {
   font-size: 12px;
   font-weight: 600;
-  color: #004b6e; /* Azul de tus labels */
+  color: #004b6e;
 }
 
 /* Inputs con Iconos */
@@ -105,6 +139,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .inputIcon {
@@ -112,6 +147,7 @@
   left: 12px;
   color: #a0aec0;
   font-size: 14px;
+  pointer-events: none;
 }
 
 .input {
@@ -121,19 +157,21 @@
   border-radius: 8px;
   background-color: #ffffff;
   font-size: 14px;
+  color: #2d3748;
   box-sizing: border-box;
 }
 
 .input:focus {
   outline: none;
   border-color: #004b6e;
+  box-shadow: 0 0 0 2px rgba(0, 75, 110, 0.15);
 }
 
 /* Botón Admin */
 .credentialsButton {
   width: 100%;
   padding: 14px;
-  background-color: #004b6e; /* El azul oscuro de tu botón de admin */
+  background-color: #004b6e;
   color: white;
   border: none;
   border-radius: 8px;
@@ -162,6 +200,7 @@
   color: #e53e3e;
   font-size: 13px;
   margin-top: 8px;
+  text-align: left;
 }
 
 /* ==========================================================
@@ -169,7 +208,7 @@
    ========================================================== */
 @media (min-width: 768px) {
   .pageContainer {
-    flex-direction: row;        /* Se ponen de costado */
+    flex-direction: row;
     justify-content: space-around;
     gap: 80px;
     max-width: 1000px;
@@ -178,19 +217,17 @@
   }
 
   .sectionBlock {
-    flex: 1;                    /* Tienen el mismo ancho proporcional */
+    flex: 1;
     max-width: 380px;
   }
 
-  /* Quitamos el contenedor gris de fondo en desktop para que quede limpio */
   .adminBlock {
     background-color: transparent;
     padding: 0;
     border-radius: 0;
   }
  
-.mobileFab {
-  display: none;
-
-}
+  .mobileFab {
+    display: none;
+  }
 }
