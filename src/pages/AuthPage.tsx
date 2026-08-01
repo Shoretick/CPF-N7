@@ -19,10 +19,10 @@ const isLocal =
   (window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1");
 
-const API_URL = 
-import.meta.env.VITE_API_URL ||
+const API_URL =
+  import.meta.env.VITE_API_URL ||
   (isLocal
-    ? "http://localhost:3000";
+    ? "http://localhost:3000"
     : "https://remarkable-adaptation-production-5d63.up.railway.app");
 
 export default function AuthPage() {
