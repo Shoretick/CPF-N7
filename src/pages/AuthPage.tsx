@@ -13,6 +13,18 @@ import InteractiveMapNavbar from "../components/InteractiveMapNavbar";
 const ADMIN_USER = "admin";
 const ADMIN_PASSWORD = "123";
 
+// URL dinámica del Backend: detecta si está en Vercel (Railway) o Localhost automáticamente
+const isLocal =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1");
+
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (isLocal
+    ? "http://localhost:3000"
+    : "https://remarkable-adaptation-production-5d63.up.railway.app");
+
 export default function AuthPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -39,20 +51,36 @@ export default function AuthPage() {
       console.log("✅ Token de Google obtenido correctamente");
 
       // 3. Enviar el token de Google a tu API en Railway
-      const response = await fetch(
-        //"https://remarkable-adaptation-production-5d63.up.railway.app/api/auth/google",
-        "http://localhost:3000/api/auth/google",
+      //const response = await fetch(
+      //"https://remarkable-adaptation-production-5d63.up.railway.app/api/auth/google",
+      //"http://localhost:3000/api/auth/google",
 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            tokenGoogle: googleIdToken,
-          }),
+      //{
+      //method: "POST",
+      //headers: {
+      // "Content-Type": "application/json",
+      //},
+      //body: JSON.stringify({
+      //    tokenGoogle: googleIdToken,
+      //   }),
+      //  },
+      //);
+
+      //if (!response.ok) {
+      //  const errorData = await response.json().catch(() => ({}));
+      //  throw new Error(
+      //    errorData.mensaje || "Error en la respuesta del servidor backend",
+      //  );
+      //}
+      const response = await fetch(`${API_URL}/api/auth/google`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({
+          tokenGoogle: googleIdToken,
+        }),
+      });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
