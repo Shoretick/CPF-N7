@@ -5,7 +5,6 @@
   flex-direction: column;
 }
 
-/* Contenedor principal de la página */
 .pageContainer {
   display: flex;
   flex-direction: column;
@@ -13,14 +12,12 @@
   background-color: #f8f9fa;
   font-family: system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
-  padding: 20px;
-  gap: 40px;
+  padding: 1.25rem;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-/* Bloques comunes para ambas secciones */
 .sectionBlock {
   width: 100%;
   max-width: 400px;
@@ -28,206 +25,97 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background-color: #ffffff;
+  padding: 2.5rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Estilos de textos */
+.headerGroup {
+  margin-bottom: 1.5rem;
+}
+
 .title {
-  color: #333e48;
-  margin-bottom: 8px;
+  color: #1a202c;
+  margin-bottom: 0.5rem;
   font-weight: 700;
   font-size: 1.5rem;
 }
 
-.subtitle, 
-.adminSubtitle {
-  color: #707a84;
-  margin-bottom: 24px;
-  line-height: 1.4;
+.subtitle {
+  color: #4a5568;
+  line-height: 1.5;
   font-size: 0.95rem;
-  max-width: 300px;
+  margin: 0;
 }
 
-/* Grupo de botones de usuario */
 .userButtonsGroup {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 0.85rem;
   width: 100%;
 }
 
-/* Botón Ingresar Sin Registro */
-.guestButton {
-  display: flex;
+/* Botones con Target Size de 44px WCAG */
+.googleButton,
+.adminButton {
+  min-height: 44px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 0.75rem;
   width: 100%;
-  padding: 12px;
-  background-color: #004b6e;
-  border: none;
+  padding: 0.75rem 1rem;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #ffffff;
   cursor: pointer;
-  transition: background-color 0.2s;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.guestButton:hover {
-  background-color: #003650;
+.googleButton:focus-visible,
+.adminButton:focus-visible {
+  outline: 3px solid #004b6e;
+  outline-offset: 2px;
 }
 
-/* Botón de Google */
 .googleButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px;
   background-color: #ffffff;
-  border: 1px solid #ccd1d6;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #4a5568;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  border: 1px solid #718096;
+  color: #2d3748;
 }
 
 .googleButton:hover {
-  background-color: #f1f3f5;
+  background-color: #f7fafc;
+  border-color: #4a5568;
 }
 
-.googleIcon {
-  width: 20px;
-  height: 20px;
-}
-
-/* Contenedor específico para Admin en versión mobile */
-.adminBlock {
-  background-color: #f4f7f9;
-  padding: 24px;
-  border-radius: 16px;
-  box-sizing: border-box;
-}
-
-/* Formulario */
-.credentialsForm {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: 6px;
-  width: 100%;
-}
-
-.fieldLabel {
-  font-size: 12px;
-  font-weight: 600;
-  color: #004b6e;
-}
-
-/* Inputs con Iconos */
-.inputContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.inputIcon {
-  position: absolute;
-  left: 12px;
-  color: #a0aec0;
-  font-size: 14px;
-  pointer-events: none;
-}
-
-.input {
-  width: 100%;
-  padding: 12px 12px 12px 36px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  background-color: #ffffff;
-  font-size: 14px;
-  color: #2d3748;
-  box-sizing: border-box;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #004b6e;
-  box-shadow: 0 0 0 2px rgba(0, 75, 110, 0.15);
-}
-
-/* Botón Admin */
-.credentialsButton {
-  width: 100%;
-  padding: 14px;
+.adminButton {
   background-color: #004b6e;
-  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background-color 0.2s;
+  color: #ffffff;
 }
 
-.credentialsButton:hover {
+.adminButton:hover {
   background-color: #003650;
 }
 
-.forgotPassword {
-  background: none;
-  border: none;
-  color: #333e48;
-  font-size: 13px;
-  margin-top: 16px;
-  cursor: pointer;
-  text-decoration: underline;
+.googleIcon {
+  flex-shrink: 0;
 }
 
 .error {
-  color: #e53e3e;
-  font-size: 13px;
-  margin-top: 8px;
-  text-align: left;
+  color: #c53030;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
-/* ==========================================================
-   MEDIA QUERY PARA ESCRITORIO 
-   ========================================================== */
-@media (min-width: 768px) {
-  .pageContainer {
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 80px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  .sectionBlock {
-    flex: 1;
-    max-width: 380px;
-  }
-
-  .adminBlock {
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-  }
- 
-  .mobileFab {
-    display: none;
+@media (prefers-reduced-motion: reduce) {
+  .googleButton,
+  .adminButton {
+    transition: none !important;
   }
 }

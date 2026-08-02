@@ -1,18 +1,17 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { AccessibilityProvider } from './context/AccessibilityContext'
-import AuthPage from './pages/AuthPage'
-import HomePage from './pages/HomePage'
-import MapPage from './pages/MapPage'
-import BComun from './pages/BComun'
-import AccessDyR from './pages/AccessDyR'
-import AccessR360 from './pages/accessDyR360/AccessR360 '
-import AccessD360 from './pages/accessDyR360/AccessD360'
-import SectorID from './pages/SectorID'
-import Marzipano from './pages/Marzipano360/Marzipano'
-import Tour360 from './pages/Tour360'
-import MapMobilePage from './pages/MapMobilePage'
-import AdminPage from "./pages/AdminPage"
-
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AccessibilityProvider } from "./context/AccessibilityContext";
+import AuthPage from "./pages/AuthPage";
+import HomePage from "./pages/HomePage";
+import MapPage from "./pages/MapPage";
+import BComun from "./pages/BComun";
+import AccessDyR from "./pages/AccessDyR";
+import AccessR360 from "./pages/accessDyR360/AccessR360 ";
+import AccessD360 from "./pages/accessDyR360/AccessD360";
+import SectorID from "./pages/SectorID";
+import Marzipano from "./pages/Marzipano360/Marzipano";
+import Tour360 from "./pages/Tour360";
+import MapMobilePage from "./pages/MapMobilePage";
+import AdminPage from "./pages/AdminPage";
 
 export default function App() {
   return (
@@ -23,17 +22,17 @@ export default function App() {
           <Route path="/inicio" element={<HomePage />} />
           <Route path="/mapa" element={<MapPage />} />
           <Route path="/bcomun" element={<BComun />} />
-           <Route path= "/sector/:sectorId" element={<SectorID />} />
+          <Route path="/sector/:sectorId" element={<SectorID />} />
           <Route path="/accesodyr" element={<AccessDyR />} />
           <Route path="/accesor360" element={<AccessR360 />} />
           <Route path="/accesod360" element={<AccessD360 />} />
           <Route path="/marzipano-360/:sectorId" element={<Marzipano />} />
-          <Route path="/admin-page" element={<AdminPage/>} />
-           <Route path="/tour360/:sectorId" element={<Tour360 />} />
-            <Route path="/mapmobile" element={<MapMobilePage />} />
+          <Route path="/admin-page" element={<AdminPage />} />
+          <Route path="/tour360/:sectorId" element={<Tour360 />} />
+          <Route path="/mapmobile" element={<MapMobilePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AccessibilityProvider>
-  )
+  );
 }
