@@ -14,11 +14,6 @@ const ADMIN_USER = "admin";
 const ADMIN_PASSWORD = "123";
 
 // URL dinámica del Backend: detecta si está en Vercel (Railway) o Localhost automáticamente
-//const isLocal =
-typeof window !== "undefined" &&
-  (window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1");
-
 const API_URL = "https://remarkable-adaptation-production-5d63.up.railway.app";
 
 export default function AuthPage() {
@@ -28,7 +23,7 @@ export default function AuthPage() {
   const [error, setError] = useState("");
 
   const goToHome = () => navigate("/inicio");
-  const goToPanel = () => navigate("/admin-page");
+  const goToAdminLogin = () => navigate("/admin-page");
 
   const handleGoogleLogin = async () => {
     setError("");
@@ -126,7 +121,7 @@ export default function AuthPage() {
         JSON.stringify({ username: ADMIN_USER, role: "admin" }),
       );
 
-      goToPanel();
+      goToAdminLogin();
       return;
     }
     setError("Usuario o contraseña incorrectos");
