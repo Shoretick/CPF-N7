@@ -14,16 +14,12 @@ const ADMIN_USER = "admin";
 const ADMIN_PASSWORD = "123";
 
 // URL dinámica del Backend: detecta si está en Vercel (Railway) o Localhost automáticamente
-const isLocal =
-  typeof window !== "undefined" &&
+//const isLocal =
+typeof window !== "undefined" &&
   (window.location.hostname === "localhost" ||
     window.location.hostname === "127.0.0.1");
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  (isLocal
-    ? "http://localhost:3000"
-    : "https://remarkable-adaptation-production-5d63.up.railway.app");
+const API_URL = "https://remarkable-adaptation-production-5d63.up.railway.app";
 
 export default function AuthPage() {
   const navigate = useNavigate();
